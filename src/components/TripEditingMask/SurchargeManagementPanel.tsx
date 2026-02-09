@@ -79,8 +79,8 @@ export function SurchargeManagementPanel({
   );
 
   return (
-    <div className="w-96 bg-gray-800 border-l border-gray-700 flex flex-col">
-      <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+    <div className="w-full lg:w-96 bg-gray-800 border-t lg:border-t-0 lg:border-l border-gray-700 flex flex-col max-h-96 lg:max-h-none">
+      <div className="p-3 sm:p-4 border-b border-gray-700 flex items-center justify-between">
         <h3 className="text-lg font-semibold text-white flex items-center gap-2">
           <DollarSign className="w-5 h-5 text-teal-400" />
           {t('boardingPoints.surchargePanel.title')}
@@ -93,7 +93,7 @@ export function SurchargeManagementPanel({
         </button>
       </div>
 
-      <div className="p-4 border-b border-gray-700">
+      <div className="p-3 sm:p-4 border-b border-gray-700">
         <label className="block text-sm font-medium text-gray-400 mb-2">
           {t('boardingPoints.surchargePanel.category')}
         </label>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Search, Bus, Calendar, ChevronRight, Plus } from 'lucide-react';
+import { Search, Bus, Calendar, ChevronRight, Plus, ArrowLeft } from 'lucide-react';
 import { TripEditingMask } from '../TripEditingMask';
 import { TripForm } from './TripForm';
 import { useTrips } from '../../hooks';
@@ -17,6 +17,7 @@ export function TripView({ trips }: TripViewProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [showTripForm, setShowTripForm] = useState(false);
   const [editingTrip, setEditingTrip] = useState<Trip | null>(null);
+  const [showDetailOnMobile, setShowDetailOnMobile] = useState(false);
 
   const filteredTrips = useMemo(() => {
     if (!searchQuery) return trips;
@@ -59,35 +60,49 @@ export function TripView({ trips }: TripViewProps) {
 
   return (
     <div className="flex flex-col h-full bg-slate-50">
-      <header className="bg-white border-b border-slate-200 px-6 py-4">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900">{t('title')}</h1>
-            <p className="text-sm text-slate-500 mt-0.5">{t('subtitle')}</p>
+      <header className="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
+          <div className="flex items-center gap-2 min-w-0">
+            {showDetailOnMobile && selectedTrip && (
+              <button
+                onClick={() => setShowDetailOnMobile(false)}
+                className="lg:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors flex-shrink-0"
+              >
+                <ArrowLeft className="w-5 h-5 text-slate-700" />
+              </button>
+            )}
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 truncate">{t('title')}</h1>
+              <p className="text-xs sm:text-sm text-slate-500 mt-0.5 hidden sm:block">{t('subtitle')}</p>
+            </div>
           </div>
           <button
             onClick={handleCreateTrip}
-            className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors shadow-sm flex-shrink-0"
           >
             <Plus className="w-4 h-4" />
-            {t('actions.create')}
+            <span className="hidden sm:inline">{t('actions.create')}</span>
           </button>
         </div>
 
-        <div className="relative max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-          <input
-            type="text"
-            placeholder={t('searchPlaceholder')}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="input pl-10"
-          />
-        </div>
+        {(!showDetailOnMobile || !selectedTrip) && (
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              type="text"
+              placeholder={t('searchPlaceholder')}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="input pl-10 w-full"
+            />
+          </div>
+        )}
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        <div className="w-80 bg-white border-r border-slate-200 overflow-auto">
+        <div className={`w-full lg:w-80 bg-white border-r border-slate-200 overflow-auto ${
+          showDetailOnMobile && selectedTrip ? 'hidden lg:block' : 'block'
+        }`}>
           {filteredTrips.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full p-6 text-center">
               <Bus className="w-12 h-12 text-slate-300 mb-3" />
@@ -100,7 +115,10 @@ export function TripView({ trips }: TripViewProps) {
               {filteredTrips.map((trip) => (
                 <button
                   key={trip.id}
-                  onClick={() => setSelectedTrip(trip)}
+                  onClick={() => {
+                    setSelectedTrip(trip);
+                    setShowDetailOnMobile(true);
+                  }}
                   className={`w-full p-4 text-left transition-colors ${
                     selectedTrip?.id === trip.id
                       ? 'bg-teal-50 border-l-2 border-teal-500'
@@ -133,14 +151,16 @@ export function TripView({ trips }: TripViewProps) {
         </div>
 
         {selectedTrip ? (
-          <div className="flex-1 overflow-hidden bg-gray-800">
+          <div className={`flex-1 overflow-hidden bg-gray-800 ${
+            showDetailOnMobile ? 'block' : 'hidden lg:block'
+          }`}>
             <TripEditingMask
               trip={selectedTrip}
               onUpdate={updateTrip}
             />
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-center bg-gray-800">
+          <div className="hidden lg:flex flex-1 items-center justify-center bg-gray-800">
             <div className="text-center">
               <Bus className="w-16 h-16 mx-auto text-gray-600 mb-4" />
               <h3 className="text-lg font-semibold text-white mb-1">{t('selectTrip.title')}</h3>

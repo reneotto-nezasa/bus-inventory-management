@@ -195,8 +195,8 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
   }
 
   return (
-    <div className="flex h-full">
-      <div className="flex-1 p-6 overflow-y-auto">
+    <div className="flex flex-col lg:flex-row h-full">
+      <div className="flex-1 p-4 sm:p-6 overflow-y-auto">
         <div className="card mb-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -216,14 +216,14 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
             </div>
             <button
               onClick={() => setShowSurchargePanel(!showSurchargePanel)}
-              className="btn-ghost flex items-center gap-2"
+              className="btn-ghost flex items-center gap-2 text-xs sm:text-sm px-2 sm:px-3"
             >
               <Settings className="w-4 h-4" />
-              {t('trips:boardingPoints.surchargePanel.editSurcharges')}
+              <span className="hidden sm:inline">{t('trips:boardingPoints.surchargePanel.editSurcharges')}</span>
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-400 mb-2">
                 {t('trips:boardingPoints.transferCategory')}

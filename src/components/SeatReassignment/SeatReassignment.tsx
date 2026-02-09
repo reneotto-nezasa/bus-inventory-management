@@ -562,55 +562,55 @@ export function SeatReassignment({ transport, onClose }: SeatReassignmentProps) 
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-800 rounded-lg w-full max-w-7xl h-[90vh] flex flex-col">
-        <div className="p-4 border-b border-gray-700 flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-semibold text-white">{t('reassignment.title')}</h2>
-            <p className="text-sm text-gray-400 mt-1">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+      <div className="bg-gray-800 rounded-lg w-full max-w-7xl h-[95vh] sm:h-[90vh] flex flex-col overflow-hidden">
+        <div className="p-3 sm:p-4 border-b border-gray-700 flex items-center justify-between flex-shrink-0">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-lg sm:text-xl font-semibold text-white truncate">{t('reassignment.title')}</h2>
+            <p className="text-xs sm:text-sm text-gray-400 mt-1 hidden sm:block">
               {transport.text} - {new Date(transport.termin).toLocaleDateString()}
             </p>
-            <div className="flex items-center gap-4 mt-2 text-sm">
+            <div className="flex items-center gap-2 sm:gap-4 mt-2 text-xs sm:text-sm">
               <span className="text-teal-400 font-medium">
-                {t('seat.available')}: {seatCounts.available}/{seatCounts.total}
+                {seatCounts.available}/{seatCounts.total}
               </span>
               {seatCounts.blocked > 0 && (
                 <span className="text-red-400 flex items-center gap-1">
                   <Ban className="w-3 h-3" />
-                  {seatCounts.blocked} {t('seat.blocked')}
+                  <span className="hidden sm:inline">{seatCounts.blocked}</span>
                 </span>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
             {unassignedPassengers.length > 0 && (
               <button
                 onClick={handleBulkAssign}
-                className="btn-ghost flex items-center gap-2"
+                className="btn-ghost flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-3"
               >
                 <Wand2 className="w-4 h-4" />
-                {t('bulk.smartAssign')}
+                <span className="hidden sm:inline">{t('bulk.smartAssign')}</span>
               </button>
             )}
             {operations.length > 0 && (
               <button
                 onClick={handleUndo}
-                className="btn-ghost flex items-center gap-2"
+                className="btn-ghost flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-3"
               >
                 <Undo2 className="w-4 h-4" />
-                {t('reassignment.undo')}
+                <span className="hidden sm:inline">{t('reassignment.undo')}</span>
               </button>
             )}
-            <button onClick={onClose} className="text-gray-400 hover:text-white">
-              <X className="w-6 h-6" />
+            <button onClick={onClose} className="text-gray-400 hover:text-white p-1">
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
 
-        <div className="flex-1 overflow-hidden flex">
-          <div className="flex-1 p-6 overflow-auto">
-            <div className="flex items-center justify-center mb-4">
-              <div className="flex items-center gap-6 text-sm">
+        <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
+          <div className="flex-1 p-3 sm:p-6 overflow-auto">
+            <div className="flex items-center justify-center mb-4 overflow-x-auto">
+              <div className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-blue-500 rounded"></div>
                   <span className="text-gray-300">{t('reassignment.free')}</span>
@@ -637,14 +637,14 @@ export function SeatReassignment({ transport, onClose }: SeatReassignmentProps) 
             </div>
 
             {mode === 'assigning' && selectedPassenger && (
-              <div className="mb-4 p-3 bg-teal-500 bg-opacity-20 border border-teal-500 rounded text-center">
-                <p className="text-white font-medium">
-                  {t('reassignment.clickSeatToAssign')}: <strong>{selectedPassenger.name}</strong>
+              <div className="mb-4 p-2 sm:p-3 bg-teal-500 bg-opacity-20 border border-teal-500 rounded text-center">
+                <p className="text-white font-medium text-xs sm:text-sm">
+                  {t('reassignment.clickSeatToAssign')}: <strong className="truncate">{selectedPassenger.name}</strong>
                 </p>
               </div>
             )}
 
-            <div className="inline-block bg-gray-700 rounded-lg p-4">
+            <div className="inline-block bg-gray-700 rounded-lg p-2 sm:p-4 max-w-full overflow-x-auto">
               {grid.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex gap-1 mb-1">
                   {row.map((seat, colIndex) => {
@@ -685,7 +685,7 @@ export function SeatReassignment({ transport, onClose }: SeatReassignmentProps) 
                         onMouseLeave={handleSeatLeave}
                         onContextMenu={(e) => handleSeatRightClick(e, seat)}
                         disabled={!isSelectable && status !== 'user-blocked'}
-                        className={`w-16 h-16 rounded ${bgColor} text-white text-xs flex flex-col items-center justify-center transition-all relative ${
+                        className={`w-12 h-12 sm:w-16 sm:h-16 rounded ${bgColor} text-white text-xs flex flex-col items-center justify-center transition-all relative ${
                           isSelectable || status === 'user-blocked' ? 'hover:opacity-80 cursor-pointer' : 'cursor-not-allowed opacity-60'
                         }`}
                         title={(status === 'user-blocked' || status === 'tour-guide') && seat.block_reason ? seat.block_reason : undefined}

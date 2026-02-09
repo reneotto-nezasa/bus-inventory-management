@@ -75,9 +75,9 @@ export function UnassignedPassengersPanel({
   }, [transportId, assignments]);
 
   return (
-    <div className="w-80 bg-gray-700 border-l border-gray-600 flex flex-col">
-      <div className="p-4 border-b border-gray-600">
-        <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+    <div className="w-full lg:w-80 bg-gray-700 border-t lg:border-t-0 lg:border-l border-gray-600 flex flex-col max-h-64 lg:max-h-none">
+      <div className="p-3 sm:p-4 border-b border-gray-600">
+        <h3 className="text-base sm:text-lg font-semibold text-white flex items-center gap-2">
           <Users className="w-5 h-5 text-teal-400" />
           {t('reassignment.unassigned')}
         </h3>

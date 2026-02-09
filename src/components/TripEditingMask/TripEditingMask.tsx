@@ -38,14 +38,14 @@ export function TripEditingMask({ trip, onUpdate }: TripEditingMaskProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="border-b border-gray-700">
-        <div className="flex space-x-1 px-6">
+      <div className="border-b border-gray-700 overflow-x-auto">
+        <div className="flex space-x-1 px-4 sm:px-6 min-w-min">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={`
-                px-6 py-3 font-medium text-sm border-b-2 transition-colors
+                px-4 sm:px-6 py-3 font-medium text-sm border-b-2 transition-colors whitespace-nowrap
                 ${
                   activeTab === tab.key
                     ? 'border-teal-500 text-teal-400'

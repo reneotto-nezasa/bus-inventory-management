@@ -64,7 +64,7 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   const currentDeparture = departures[0];
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
       <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-white flex items-center gap-2">
@@ -97,8 +97,8 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div className="col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div className="sm:col-span-2">
             <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.tripName')}
             </label>
