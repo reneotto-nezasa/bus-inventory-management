@@ -33,7 +33,9 @@ function App() {
     boardingPoints,
     transferCostCategories,
     loading: boardingLoading,
+    createBoardingPoint,
     updateBoardingPoint,
+    deleteBoardingPoint,
   } = useBoardingPoints();
 
   const {
@@ -179,6 +181,8 @@ function App() {
             boardingPoints={boardingPoints}
             transferCostCategories={transferCostCategories}
             onUpdateBoardingPoint={updateBoardingPoint}
+            onCreateBoardingPoint={createBoardingPoint}
+            onDeleteBoardingPoint={deleteBoardingPoint}
           />
         );
 

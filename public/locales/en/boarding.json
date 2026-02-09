@@ -12,7 +12,8 @@
     "address": "Address",
     "time": "Time",
     "code": "Code",
-    "status": "Status"
+    "status": "Status",
+    "actions": "Actions"
   },
   "actions": {
     "addToRoute": "Add to route",
@@ -43,5 +44,23 @@
   "returnPoints": "Return Boarding Points",
   "needsEnrichment": "Needs data enrichment",
   "surcharge": "Surcharge",
-  "enrichedFormat": "{{postalCode}} {{city}}, {{streetAddress}}"
+  "enrichedFormat": "{{postalCode}} {{city}}, {{streetAddress}}",
+  "form": {
+    "createTitle": "Create Boarding Point",
+    "editTitle": "Edit Boarding Point",
+    "location": "Location",
+    "locationPlaceholder": "Enter city name",
+    "address": "Address / Location",
+    "addressPlaceholder": "Enter street address or landmark",
+    "postalCode": "Postal Code",
+    "postalCodePlaceholder": "Enter postal code",
+    "code": "Code",
+    "codePlaceholder": "Enter unique code",
+    "type": "Type",
+    "busProId": "BusPro ID",
+    "busProIdPlaceholder": "Enter BusPro ID (optional)",
+    "status": "Status",
+    "transferCategory": "Default Transfer Cost Category"
+  },
+  "confirmDelete": "Are you sure you want to delete this boarding point?"
 }

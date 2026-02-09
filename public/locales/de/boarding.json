@@ -12,7 +12,8 @@
     "address": "Adresse",
     "time": "Zeit",
     "code": "Code",
-    "status": "Status"
+    "status": "Status",
+    "actions": "Aktionen"
   },
   "actions": {
     "addToRoute": "Zur Route hinzufuegen",
@@ -43,5 +44,23 @@
   "returnPoints": "Zustiege Rueckfahrt",
   "needsEnrichment": "Datenpflege benoetigt",
   "surcharge": "Zuschlag",
-  "enrichedFormat": "{{postalCode}} {{city}}, {{streetAddress}}"
+  "enrichedFormat": "{{postalCode}} {{city}}, {{streetAddress}}",
+  "form": {
+    "createTitle": "Zustiegspunkt erstellen",
+    "editTitle": "Zustiegspunkt bearbeiten",
+    "location": "Ort",
+    "locationPlaceholder": "Ortsnamen eingeben",
+    "address": "Adresse / Stelle",
+    "addressPlaceholder": "Straßenadresse oder Orientierungspunkt eingeben",
+    "postalCode": "Postleitzahl",
+    "postalCodePlaceholder": "PLZ eingeben",
+    "code": "Code",
+    "codePlaceholder": "Eindeutigen Code eingeben",
+    "type": "Typ",
+    "busProId": "BusPro ID",
+    "busProIdPlaceholder": "BusPro ID eingeben (optional)",
+    "status": "Status",
+    "transferCategory": "Standard-Transferkostenkategorie"
+  },
+  "confirmDelete": "Sind Sie sicher, dass Sie diesen Zustiegspunkt loeschen moechten?"
 }

@@ -1,18 +1,23 @@
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Search, MapPin, CheckCircle, XCircle, Filter, Clock } from 'lucide-react';
+import { Search, MapPin, CheckCircle, XCircle, Filter, Clock, Plus, Edit2, Trash2 } from 'lucide-react';
 import type { BoardingPoint, TransferCostCategory } from '../../types';
+import { BoardingPointForm } from './BoardingPointForm';
 
 interface BoardingPointsViewProps {
   boardingPoints: BoardingPoint[];
   transferCostCategories: TransferCostCategory[];
-  onUpdateBoardingPoint: (id: string, updates: Partial<BoardingPoint>) => void;
+  onUpdateBoardingPoint: (id: string, updates: Partial<BoardingPoint>) => Promise<void>;
+  onCreateBoardingPoint: (data: Partial<BoardingPoint>) => Promise<void>;
+  onDeleteBoardingPoint: (id: string) => Promise<void>;
 }
 
 export function BoardingPointsView({
   boardingPoints,
   transferCostCategories,
   onUpdateBoardingPoint,
+  onCreateBoardingPoint,
+  onDeleteBoardingPoint,
 }: BoardingPointsViewProps) {
   const { t } = useTranslation(['boarding', 'common']);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -21,6 +26,8 @@ export function BoardingPointsView({
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'freigegeben' | 'gesperrt'>('all');
   const [showOnlyAssigned, setShowOnlyAssigned] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [editingBoardingPoint, setEditingBoardingPoint] = useState<BoardingPoint | undefined>();
 
   const filteredBoardingPoints = useMemo(() => {
     let filtered = boardingPoints;
@@ -87,18 +94,42 @@ export function BoardingPointsView({
     setAssignedTimes((prev) => ({ ...prev, [id]: time }));
   };
 
-  const handleApprove = () => {
-    selectedIds.forEach((id) => {
-      onUpdateBoardingPoint(id, { status: 'freigegeben' });
-    });
+  const handleApprove = async () => {
+    for (const id of selectedIds) {
+      await onUpdateBoardingPoint(id, { status: 'freigegeben' });
+    }
     setSelectedIds(new Set());
   };
 
-  const handleBlock = () => {
-    selectedIds.forEach((id) => {
-      onUpdateBoardingPoint(id, { status: 'gesperrt' });
-    });
+  const handleBlock = async () => {
+    for (const id of selectedIds) {
+      await onUpdateBoardingPoint(id, { status: 'gesperrt' });
+    }
     setSelectedIds(new Set());
+  };
+
+  const handleEdit = (boardingPoint: BoardingPoint) => {
+    setEditingBoardingPoint(boardingPoint);
+    setShowForm(true);
+  };
+
+  const handleCreate = () => {
+    setEditingBoardingPoint(undefined);
+    setShowForm(true);
+  };
+
+  const handleFormSubmit = async (data: Partial<BoardingPoint>) => {
+    if (editingBoardingPoint) {
+      await onUpdateBoardingPoint(editingBoardingPoint.id, data);
+    } else {
+      await onCreateBoardingPoint(data);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm(t('confirmDelete'))) {
+      await onDeleteBoardingPoint(id);
+    }
   };
 
   const approvedCount = boardingPoints.filter(bp => bp.status === 'freigegeben').length;
@@ -117,6 +148,10 @@ export function BoardingPointsView({
               <span className="badge badge-success">{approvedCount} {t('common:filters.active')}</span>
               <span className="badge badge-danger">{blockedCount} {t('common:filters.blocked')}</span>
             </div>
+            <button onClick={handleCreate} className="btn btn-primary">
+              <Plus className="w-4 h-4" />
+              {t('common:actions.create')}
+            </button>
           </div>
         </div>
 
@@ -216,6 +251,7 @@ export function BoardingPointsView({
                       <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wide">{t('table.time')}</th>
                       <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wide">{t('table.code')}</th>
                       <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wide">{t('table.status')}</th>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wide">{t('table.actions')}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
@@ -284,6 +320,24 @@ export function BoardingPointsView({
                               {bp.status === 'freigegeben' ? t('common:filters.active') : t('common:filters.blocked')}
                             </span>
                           </td>
+                          <td className="px-4 py-3">
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => handleEdit(bp)}
+                                className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-600 hover:text-slate-900"
+                                title={t('common:actions.edit')}
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(bp.id)}
+                                className="p-1.5 hover:bg-red-50 rounded-lg transition-colors text-slate-600 hover:text-red-600"
+                                title={t('common:actions.delete')}
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
                         </tr>
                       );
                     })}
@@ -337,6 +391,15 @@ export function BoardingPointsView({
           </div>
         </div>
       </div>
+
+      {showForm && (
+        <BoardingPointForm
+          boardingPoint={editingBoardingPoint}
+          transferCostCategories={transferCostCategories}
+          onSubmit={handleFormSubmit}
+          onClose={() => setShowForm(false)}
+        />
+      )}
     </div>
   );
 }
