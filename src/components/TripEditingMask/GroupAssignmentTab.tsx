@@ -41,13 +41,15 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
     <div className="p-6 space-y-6">
       <div className="card">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <Users className="w-5 h-5 text-teal-600" />
-            {t('groups.title')}
-          </h3>
+            <h3 className="text-lg font-semibold text-slate-900 m-0">
+              {t('groups.title')}
+            </h3>
+          </div>
           <button
             onClick={() => setShowAddGroup(true)}
-            className="btn btn-primary text-sm flex items-center gap-1"
+            className="btn btn-primary text-sm"
           >
             <Plus className="w-4 h-4" />
             {t('groups.addGroup')}
