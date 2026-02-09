@@ -62,5 +62,12 @@
     "status": "Status",
     "transferCategory": "Default Transfer Cost Category"
   },
-  "confirmDelete": "Are you sure you want to delete this boarding point?"
+  "confirmDelete": "Are you sure you want to delete this boarding point?",
+  "detail": {
+    "locationSection": "Location Details",
+    "configSection": "Configuration",
+    "surchargesSection": "Surcharges",
+    "category": "Category",
+    "busProIdHint": "Optional identifier for BusPro system integration"
+  }
 }

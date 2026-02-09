@@ -31,7 +31,8 @@
     "available": "Available",
     "booked": "Booked",
     "open": "Open",
-    "closed": "Closed"
+    "closed": "Closed",
+    "saving": "Saving..."
   },
   "time": {
     "justNow": "Just now",

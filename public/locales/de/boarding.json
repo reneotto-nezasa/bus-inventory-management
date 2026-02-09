@@ -62,5 +62,12 @@
     "status": "Status",
     "transferCategory": "Standard-Transferkostenkategorie"
   },
-  "confirmDelete": "Sind Sie sicher, dass Sie diesen Zustiegspunkt loeschen moechten?"
+  "confirmDelete": "Sind Sie sicher, dass Sie diesen Zustiegspunkt loeschen moechten?",
+  "detail": {
+    "locationSection": "Standortdetails",
+    "configSection": "Konfiguration",
+    "surchargesSection": "Zuschlaege",
+    "category": "Kategorie",
+    "busProIdHint": "Optionaler Bezeichner fuer die BusPro-Systemintegration"
+  }
 }

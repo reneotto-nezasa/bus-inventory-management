@@ -31,7 +31,8 @@
     "available": "Verfuegbar",
     "booked": "Gebucht",
     "open": "Offen",
-    "closed": "Geschlossen"
+    "closed": "Geschlossen",
+    "saving": "Speichern..."
   },
   "time": {
     "justNow": "Gerade eben",

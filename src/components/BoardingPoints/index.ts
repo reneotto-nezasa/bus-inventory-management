@@ -1,2 +1,2 @@
 export { BoardingPointsView } from './BoardingPointsView';
-export { BoardingPointForm } from './BoardingPointForm';
+export { BoardingPointDetail } from './BoardingPointDetail';

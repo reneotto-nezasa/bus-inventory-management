@@ -36,6 +36,7 @@ function App() {
     createBoardingPoint,
     updateBoardingPoint,
     deleteBoardingPoint,
+    toggleStatus: toggleBoardingPointStatus,
   } = useBoardingPoints();
 
   const {
@@ -183,6 +184,7 @@ function App() {
             onUpdateBoardingPoint={updateBoardingPoint}
             onCreateBoardingPoint={createBoardingPoint}
             onDeleteBoardingPoint={deleteBoardingPoint}
+            onToggleStatus={toggleBoardingPointStatus}
           />
         );
 
