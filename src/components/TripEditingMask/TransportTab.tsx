@@ -167,11 +167,36 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
     termin: transport.termin,
     bis: transport.bis,
     status: transport.status,
+    preis: transport.preis,
+    fruehbucher: transport.fruehbucher || false,
+    altersermaessigung: transport.altersermaessigung || false,
     hinweis_stamm: transport.hinweis_stamm || '',
     seat_plan_note: transport.seat_plan_note || '',
   });
+  const [priceError, setPriceError] = useState<string>('');
+
+  const validatePrice = (unterart: 'BUS' | 'PKW', preis: number): boolean => {
+    if (unterart === 'PKW' && preis > 0) {
+      setPriceError(t('transports.pkwPriceError'));
+      return false;
+    }
+    if (unterart === 'BUS' && preis < 0) {
+      setPriceError(t('transports.busPriceError'));
+      return false;
+    }
+    setPriceError('');
+    return true;
+  };
+
+  const handlePriceChange = (value: number) => {
+    setFormData({ ...formData, preis: value });
+    validatePrice(formData.unterart, value);
+  };
 
   const handleSave = async () => {
+    if (!validatePrice(formData.unterart, formData.preis)) {
+      return;
+    }
     await updateBusTransport(transport.id, formData);
     setEditMode(false);
   };
@@ -230,6 +255,16 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
                 </span>
               )}
               <span className="badge-neutral text-xs">{transport.status}</span>
+              {transport.fruehbucher && (
+                <span className="px-2 py-0.5 bg-green-900/30 border border-green-700 rounded text-green-300 text-xs">
+                  {t('transports.earlyBird')}
+                </span>
+              )}
+              {transport.altersermaessigung && (
+                <span className="px-2 py-0.5 bg-blue-900/30 border border-blue-700 rounded text-blue-300 text-xs">
+                  {t('transports.ageDiscount')}
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -268,7 +303,11 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
             </label>
             <select
               value={formData.unterart}
-              onChange={(e) => setFormData({ ...formData, unterart: e.target.value as 'BUS' | 'PKW' })}
+              onChange={(e) => {
+                const newUnterart = e.target.value as 'BUS' | 'PKW';
+                setFormData({ ...formData, unterart: newUnterart });
+                validatePrice(newUnterart, formData.preis);
+              }}
               className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
             >
               <option value="BUS">{t('transports.bus')}</option>
@@ -285,6 +324,69 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
               onChange={(e) => setFormData({ ...formData, termin: e.target.value })}
               className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
             />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">
+              {t('transports.price')}
+              {formData.unterart === 'PKW' && (
+                <span className="text-xs text-teal-400 ml-1">({t('transports.pkwPriceHint')})</span>
+              )}
+            </label>
+            <div className="relative">
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">€</span>
+              <input
+                type="number"
+                step="0.01"
+                value={formData.preis}
+                onChange={(e) => handlePriceChange(Number(e.target.value))}
+                className={`w-full pl-6 pr-2 py-1 bg-gray-600 border rounded text-white text-sm ${
+                  priceError ? 'border-red-500' : 'border-gray-500'
+                } ${formData.unterart === 'PKW' && formData.preis < 0 ? 'text-red-400' : ''}`}
+              />
+            </div>
+            {priceError && (
+              <p className="text-red-400 text-xs mt-1">{priceError}</p>
+            )}
+          </div>
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">
+              {t('tripData.statusOutbound')}
+            </label>
+            <select
+              value={formData.status}
+              onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+              className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+            >
+              <option value="Frei">{t('status.frei')}</option>
+              <option value="Offen">{t('status.offen')}</option>
+              <option value="Geschlossen">{t('status.geschlossen')}</option>
+              <option value="Bestätigt">{t('status.bestaetigt')}</option>
+            </select>
+          </div>
+          <div className="col-span-2">
+            <label className="block text-xs text-gray-400 mb-2">
+              {t('transports.discounts')}
+            </label>
+            <div className="flex gap-4">
+              <label className="flex items-center gap-2 text-sm text-white cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.fruehbucher}
+                  onChange={(e) => setFormData({ ...formData, fruehbucher: e.target.checked })}
+                  className="w-4 h-4 rounded border-gray-500 bg-gray-600 text-teal-500 focus:ring-2 focus:ring-teal-500"
+                />
+                <span>{t('transports.earlyBird')}</span>
+              </label>
+              <label className="flex items-center gap-2 text-sm text-white cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.altersermaessigung}
+                  onChange={(e) => setFormData({ ...formData, altersermaessigung: e.target.checked })}
+                  className="w-4 h-4 rounded border-gray-500 bg-gray-600 text-teal-500 focus:ring-2 focus:ring-teal-500"
+                />
+                <span>{t('transports.ageDiscount')}</span>
+              </label>
+            </div>
           </div>
           <div className="col-span-2">
             <label className="block text-xs text-gray-400 mb-1">
@@ -308,6 +410,25 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
           </div>
           <p className="text-white">
             {new Date(transport.termin).toLocaleDateString()} - {new Date(transport.bis).toLocaleDateString()}
+          </p>
+        </div>
+
+        <div>
+          <div className="flex items-center gap-2 text-gray-400 mb-1">
+            <DollarSign className="w-4 h-4" />
+            {t('transports.price')}
+          </div>
+          <p className={`font-semibold ${
+            transport.unterart === 'PKW' && transport.preis < 0
+              ? 'text-red-400'
+              : transport.preis < 0
+                ? 'text-red-400'
+                : 'text-white'
+          }`}>
+            {transport.preis < 0 ? '-' : ''}€{Math.abs(transport.preis).toFixed(2)}
+            {transport.unterart === 'PKW' && transport.preis < 0 && (
+              <span className="text-xs text-teal-400 ml-2">({t('transports.discount')})</span>
+            )}
           </p>
         </div>
 

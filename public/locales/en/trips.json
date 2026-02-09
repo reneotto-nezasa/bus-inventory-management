@@ -71,6 +71,11 @@
     "outbound": "Outbound",
     "return": "Return",
     "date": "Date",
+    "price": "Price",
+    "discount": "Discount",
+    "pkwPriceHint": "negative for discount",
+    "pkwPriceError": "PKW price must be negative or zero",
+    "busPriceError": "Bus price must be positive or zero",
     "seatMap": "Seat Map",
     "noSeatMap": "No seat map assigned",
     "boardingPoints": "Boarding Points",
@@ -90,7 +95,10 @@
     "printBoardingList": "Print Boarding List",
     "generatePDF": "Generate PDF",
     "download": "Download",
-    "generatingPDF": "Generating PDF..."
+    "generatingPDF": "Generating PDF...",
+    "discounts": "Discounts",
+    "earlyBird": "Early Bird",
+    "ageDiscount": "Age Discount"
   },
   "pdf": {
     "seatPlan": "Seat Plan",

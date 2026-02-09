@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Hotel, Plus, LayoutGrid, List } from 'lucide-react';
-import type { Trip, TripDeparture, Accommodation } from '../../types';
+import { Hotel, Plus, LayoutGrid, List, Filter, X } from 'lucide-react';
+import type { Trip, TripDeparture, Accommodation, RoomType, AccommodationStatus } from '../../types';
 import { useAccommodations } from '../../hooks';
 import { StructuredView } from './StructuredView';
 import { FlatListView } from './FlatListView';
@@ -21,8 +21,33 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
   const [showForm, setShowForm] = useState(false);
   const [editingAccommodation, setEditingAccommodation] = useState<Accommodation | null>(null);
   const [loading, setLoading] = useState(true);
+  const [filterDeck, setFilterDeck] = useState<string>('');
+  const [filterStatus, setFilterStatus] = useState<AccommodationStatus | ''>('');
+  const [filterRoomType, setFilterRoomType] = useState<RoomType | ''>('');
 
   const selectedDeparture = trip.trip_departures?.[0];
+
+  const filteredAccommodations = useMemo(() => {
+    return accommodations.filter((acc) => {
+      if (filterDeck && acc.deck_name !== filterDeck) return false;
+      if (filterStatus && acc.status !== filterStatus) return false;
+      if (filterRoomType && acc.room_type !== filterRoomType) return false;
+      return true;
+    });
+  }, [accommodations, filterDeck, filterStatus, filterRoomType]);
+
+  const uniqueDecks = useMemo(() => {
+    const decks = new Set(accommodations.map((a) => a.deck_name).filter(Boolean));
+    return Array.from(decks).sort();
+  }, [accommodations]);
+
+  const hasActiveFilters = filterDeck || filterStatus || filterRoomType;
+
+  const clearFilters = () => {
+    setFilterDeck('');
+    setFilterStatus('');
+    setFilterRoomType('');
+  };
 
   useEffect(() => {
     const loadAccommodations = async () => {
@@ -125,6 +150,85 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
         </div>
       </div>
 
+      {accommodations.length > 0 && (
+        <div className="card">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold text-white flex items-center gap-2">
+              <Filter className="w-4 h-4 text-teal-400" />
+              {t('filters.title')}
+            </h3>
+            {hasActiveFilters && (
+              <button
+                onClick={clearFilters}
+                className="btn-ghost text-xs flex items-center gap-1"
+              >
+                <X className="w-3 h-3" />
+                {t('filters.clearAll')}
+              </button>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-2">
+                {t('filters.deck')}
+              </label>
+              <select
+                value={filterDeck}
+                onChange={(e) => setFilterDeck(e.target.value)}
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+              >
+                <option value="">{t('filters.all')}</option>
+                {uniqueDecks.map((deck) => (
+                  <option key={deck} value={deck}>
+                    {deck}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-2">
+                {t('filters.status')}
+              </label>
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value as AccommodationStatus | '')}
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+              >
+                <option value="">{t('filters.all')}</option>
+                <option value="Frei">{t('statuses.Frei')}</option>
+                <option value="Anfrage">{t('statuses.Anfrage')}</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-2">
+                {t('filters.roomType')}
+              </label>
+              <select
+                value={filterRoomType}
+                onChange={(e) => setFilterRoomType(e.target.value as RoomType | '')}
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+              >
+                <option value="">{t('filters.all')}</option>
+                <option value="DZ">{t('roomTypes.dz')}</option>
+                <option value="EZ">{t('roomTypes.ez')}</option>
+                <option value="Suite">{t('roomTypes.suite')}</option>
+                <option value="Zweibettkabine">{t('roomTypes.zweibettkabine')}</option>
+                <option value="Alleinbenutzung">{t('roomTypes.alleinbenutzung')}</option>
+              </select>
+            </div>
+          </div>
+
+          {hasActiveFilters && (
+            <div className="mt-3 text-xs text-gray-400">
+              {t('filters.showing')} {filteredAccommodations.length} {t('filters.of')} {accommodations.length}
+            </div>
+          )}
+        </div>
+      )}
+
       {loading ? (
         <div className="text-center text-gray-400 py-8">
           <p className="text-sm">Loading...</p>
@@ -142,7 +246,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
         <>
           {viewMode === 'structured' ? (
             <StructuredView
-              accommodations={accommodations}
+              accommodations={filteredAccommodations}
               onEdit={handleEditAccommodation}
               onDelete={async (id) => {
                 setAccommodations((prev) => prev.filter((a) => a.id !== id));
@@ -150,7 +254,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             />
           ) : (
             <FlatListView
-              accommodations={accommodations}
+              accommodations={filteredAccommodations}
               onEdit={handleEditAccommodation}
               onDelete={async (id) => {
                 setAccommodations((prev) => prev.filter((a) => a.id !== id));

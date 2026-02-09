@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, DollarSign, Save } from 'lucide-react';
-import type { Trip, TripTag } from '../../types';
+import { Calendar, DollarSign, Save, Plus } from 'lucide-react';
+import type { Trip, TripTag, TripDeparture } from '../../types';
 import { supabase } from '../../lib/supabase';
 import { ClassificationTagsSection } from './ClassificationTagsSection';
 import { DepartureStatusSection } from './DepartureStatusSection';
 import { TourGuideManagementSection } from './TourGuideManagementSection';
+import { useTrips } from '../../hooks';
 
 interface TripDataTabProps {
   trip: Trip;
@@ -14,9 +15,11 @@ interface TripDataTabProps {
 
 export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   const { t } = useTranslation('trips');
+  const { createTripDeparture } = useTrips();
 
   const [editMode, setEditMode] = useState(false);
   const [tripTags, setTripTags] = useState<TripTag[]>([]);
+  const [selectedDepartureId, setSelectedDepartureId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     text: trip.text,
     code: trip.code,
@@ -30,6 +33,13 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   useEffect(() => {
     fetchTripTags();
   }, [trip.id]);
+
+  useEffect(() => {
+    const departures = trip.trip_departures || [];
+    if (departures.length > 0 && !selectedDepartureId) {
+      setSelectedDepartureId(departures[0].id);
+    }
+  }, [trip.trip_departures, selectedDepartureId]);
 
   const fetchTripTags = async () => {
     try {
@@ -52,16 +62,19 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   };
 
   const handleAddDeparture = async () => {
-    await createTripDeparture(trip.id, {
+    const newDeparture = await createTripDeparture(trip.id, {
       start_date: trip.termin,
       end_date: trip.bis,
       status_hin: 'Frei',
       status_rueck: 'Frei',
     });
+    if (newDeparture) {
+      setSelectedDepartureId(newDeparture.id);
+    }
   };
 
   const departures = trip.trip_departures || [];
-  const currentDeparture = departures[0];
+  const currentDeparture = departures.find(d => d.id === selectedDepartureId) || departures[0];
 
   return (
     <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
@@ -236,6 +249,43 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
         tags={tripTags}
         onTagsUpdate={fetchTripTags}
       />
+
+      <div className="card">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-teal-400" />
+            {t('tripData.departures')}
+          </h3>
+          <button
+            onClick={handleAddDeparture}
+            className="btn-ghost text-sm flex items-center gap-1"
+          >
+            <Plus className="w-4 h-4" />
+            {t('tripData.addDeparture')}
+          </button>
+        </div>
+
+        {departures.length === 0 ? (
+          <p className="text-gray-400 text-sm">{t('tripData.noDepartures')}</p>
+        ) : (
+          <div className="space-y-2">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              {t('actions.select')} {t('tripData.departures')}
+            </label>
+            <select
+              value={selectedDepartureId || ''}
+              onChange={(e) => setSelectedDepartureId(e.target.value)}
+              className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+            >
+              {departures.map((departure) => (
+                <option key={departure.id} value={departure.id}>
+                  {departure.code || `${new Date(departure.start_date).toLocaleDateString()} - ${departure.end_date ? new Date(departure.end_date).toLocaleDateString() : t('tripData.noDeadline')}`}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
 
       {currentDeparture && (
         <DepartureStatusSection

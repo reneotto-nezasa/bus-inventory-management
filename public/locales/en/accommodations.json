@@ -79,10 +79,14 @@
     "priceRange": "Price Range"
   },
   "filters": {
+    "title": "Filters",
     "all": "All",
     "deck": "Deck",
     "status": "Status",
-    "roomType": "Room Type"
+    "roomType": "Room Type",
+    "clearAll": "Clear All",
+    "showing": "Showing",
+    "of": "of"
   },
   "confirmDelete": "Do you really want to delete this accommodation?"
 }

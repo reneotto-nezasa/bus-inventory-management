@@ -72,6 +72,8 @@ export interface BusTransport {
   hinweis_stamm: string | null;
   transfer_cost_category_id: string | null;
   parent_transport_id: string | null;
+  fruehbucher: boolean;
+  altersermaessigung: boolean;
   seat_map?: SeatMap | null;
   boarding_point_assignments?: BoardingPointAssignment[];
   continuation_legs?: BusTransport[];

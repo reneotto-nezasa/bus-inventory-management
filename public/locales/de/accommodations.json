@@ -79,10 +79,14 @@
     "priceRange": "Preisspanne"
   },
   "filters": {
+    "title": "Filter",
     "all": "Alle",
     "deck": "Deck",
     "status": "Status",
-    "roomType": "Zimmertyp"
+    "roomType": "Zimmertyp",
+    "clearAll": "Zuruecksetzen",
+    "showing": "Zeige",
+    "of": "von"
   },
   "confirmDelete": "Moechten Sie diese Unterbringung wirklich loeschen?"
 }

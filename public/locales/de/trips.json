@@ -71,6 +71,11 @@
     "outbound": "Hinfahrt",
     "return": "Rueckfahrt",
     "date": "Datum",
+    "price": "Preis",
+    "discount": "Rabatt",
+    "pkwPriceHint": "negativ fuer Rabatt",
+    "pkwPriceError": "PKW-Preis muss negativ oder null sein",
+    "busPriceError": "Bus-Preis muss positiv oder null sein",
     "seatMap": "Sitzplan",
     "noSeatMap": "Kein Sitzplan zugewiesen",
     "boardingPoints": "Zustiegspunkte",
@@ -90,7 +95,10 @@
     "printBoardingList": "Zustiegsliste drucken",
     "generatePDF": "PDF erstellen",
     "download": "Herunterladen",
-    "generatingPDF": "PDF wird erstellt..."
+    "generatingPDF": "PDF wird erstellt...",
+    "discounts": "Rabatte",
+    "earlyBird": "Fruehbucher",
+    "ageDiscount": "Altersermaessigung"
   },
   "pdf": {
     "seatPlan": "Sitzplan",
