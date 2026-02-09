@@ -208,7 +208,7 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                     <Calendar className="w-3 h-3" />
                     {new Date(selectedTransport.termin).toLocaleDateString()}
                   </span>
-                  <span className="badge-info text-xs">
+                  <span className="badge badge-info text-xs">
                     {selectedTransport.richtung === 'HIN' ? t('trips:transports.outbound') : t('trips:transports.return')}
                   </span>
                 </div>
@@ -216,7 +216,7 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
             </div>
             <button
               onClick={() => setShowSurchargePanel(!showSurchargePanel)}
-              className="btn-ghost flex items-center gap-2 text-xs sm:text-sm px-2 sm:px-3"
+              className="btn btn-ghost flex items-center gap-2 text-xs sm:text-sm px-2 sm:px-3"
             >
               <Settings className="w-4 h-4" />
               <span className="hidden sm:inline">{t('trips:boardingPoints.surchargePanel.editSurcharges')}</span>
@@ -296,13 +296,13 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                   </button>
                   <button
                     onClick={handleBulkAssign}
-                    className="btn-ghost text-sm"
+                    className="btn btn-ghost text-sm"
                   >
                     {t('trips:boardingPoints.bulkActions.assignSelected')} ({selectedBoardingPoints.size})
                   </button>
                   <button
                     onClick={handleBulkUnassign}
-                    className="btn-ghost text-sm"
+                    className="btn btn-ghost text-sm"
                   >
                     {t('trips:boardingPoints.bulkActions.unassignSelected')} ({selectedBoardingPoints.size})
                   </button>
@@ -381,7 +381,7 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                         <div className="flex items-center gap-2">
                           <span>{formatBoardingPointLocation(boardingPoint)}</span>
                           {needsEnrichment && (
-                            <span className="badge-warning text-xs flex items-center gap-1">
+                            <span className="badge badge-warning text-xs flex items-center gap-1">
                               <AlertCircle className="w-3 h-3" />
                               {t('boarding:needsEnrichment')}
                             </span>

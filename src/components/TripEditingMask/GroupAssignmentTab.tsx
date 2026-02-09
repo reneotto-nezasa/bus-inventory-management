@@ -47,7 +47,7 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
           </h3>
           <button
             onClick={() => setShowAddGroup(true)}
-            className="btn-primary text-sm flex items-center gap-1"
+            className="btn btn-primary text-sm flex items-center gap-1"
           >
             <Plus className="w-4 h-4" />
             {t('groups.addGroup')}
@@ -70,7 +70,7 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
               />
               <button
                 onClick={handleCreateGroup}
-                className="btn-primary"
+                className="btn btn-primary"
               >
                 {t('actions.save')}
               </button>
@@ -79,7 +79,7 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
                   setShowAddGroup(false);
                   setNewGroupLabel('');
                 }}
-                className="btn-ghost"
+                className="btn btn-ghost"
               >
                 {t('actions.cancel')}
               </button>
@@ -163,7 +163,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
               </button>
               <button
                 onClick={onDelete}
-                className="text-red-400 hover:text-red-300"
+                className="text-red-400 hover:text-red-600"
               >
                 <Trash2 className="w-4 h-4" />
               </button>
@@ -196,7 +196,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
             {t('groups.assignedTransports')} ({assignedTransports.length})
           </h5>
           {assignedTransports.length === 0 ? (
-            <p className="text-gray-500 text-sm">{t('groups.noTransportsInGroup')}</p>
+            <p className="text-slate-500 text-sm">{t('groups.noTransportsInGroup')}</p>
           ) : (
             <div className="space-y-2">
               {assignedTransports.map((transport) => (
@@ -206,7 +206,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
                   action={
                     <button
                       onClick={() => removeTransportFromGroup(group.id, transport.id)}
-                      className="text-red-400 hover:text-red-300 text-sm"
+                      className="text-red-400 hover:text-red-600 text-sm"
                     >
                       {t('groups.removeFromGroup')}
                     </button>
