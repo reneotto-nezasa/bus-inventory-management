@@ -1,0 +1,1 @@
+export { BoardingPointsView } from './BoardingPointsView';

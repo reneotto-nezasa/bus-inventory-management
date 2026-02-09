@@ -1,0 +1,186 @@
+{
+  "title": "Trips",
+  "subtitle": "View and manage scheduled journeys",
+  "searchPlaceholder": "Search trips...",
+  "empty": {
+    "noMatch": "No trips match your search",
+    "noData": "No trips available"
+  },
+  "selectTrip": {
+    "title": "Select a Trip",
+    "hint": "Choose a trip from the list to view details"
+  },
+  "tabs": {
+    "tripData": "Trip Data",
+    "transport": "Transport",
+    "boardingPoints": "Boarding Points",
+    "groupAssignment": "Group Assignment",
+    "accommodation": "Accommodation",
+    "extras": "Extras"
+  },
+  "tripData": {
+    "title": "Trip Data",
+    "tripName": "Trip Name",
+    "tripCode": "Trip Code",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "basePrice": "Base Price",
+    "bookingDeadline": "Booking Deadline",
+    "noDeadline": "No deadline",
+    "statusOutbound": "Outbound Status",
+    "statusReturn": "Return Status",
+    "tourGuide": "Tour Guide",
+    "tourGuideName": "Last Name",
+    "tourGuideFirstName": "First Name",
+    "tourGuideGender": "Gender",
+    "tourGuideCode": "Code",
+    "addTourGuide": "Add Tour Guide",
+    "departures": "Departures",
+    "addDeparture": "Add Departure",
+    "departureCode": "Departure Code",
+    "noDepartures": "No departures available",
+    "classificationTags": "Classification Tags",
+    "departureStatus": "Departure Status",
+    "customValue": "Custom Value",
+    "enterCustomValue": "Enter value...",
+    "tagDimension": {
+      "trip_type": "Trip Type",
+      "category": "Trip Category",
+      "region": "Region",
+      "media_partner": "Media Partner",
+      "responsible_pm": "Responsible PM",
+      "risk": "Risk Level"
+    },
+    "status": {
+      "frei": "Available",
+      "warteliste": "Waitlist (W)",
+      "anfrage": "Request"
+    }
+  },
+  "details": {
+    "startingFrom": "Starting from",
+    "departure": "Departure",
+    "return": "Return",
+    "outboundStatus": "Outbound Status",
+    "returnStatus": "Return Status"
+  },
+  "transports": {
+    "title": "Transports",
+    "empty": "No transports scheduled for this trip",
+    "group": "Group",
+    "outbound": "Outbound",
+    "return": "Return",
+    "date": "Date",
+    "seatMap": "Seat Map",
+    "noSeatMap": "No seat map assigned",
+    "boardingPoints": "Boarding Points",
+    "assigned": "assigned",
+    "seatLayoutPreview": "Seat Layout Preview",
+    "more": "+{{count}} more",
+    "type": "Type",
+    "bus": "Bus",
+    "car": "Car",
+    "pkw": "Own Arrival (PKW)",
+    "continuationLeg": "Continuation Leg",
+    "addContinuationLeg": "Add Continuation Leg",
+    "addTransport": "Add Transport",
+    "internalNotes": "Internal Notes",
+    "transferCostCategory": "Transfer Cost Category",
+    "printSeatPlan": "Print Seat Plan",
+    "printBoardingList": "Print Boarding List",
+    "generatePDF": "Generate PDF",
+    "download": "Download",
+    "generatingPDF": "Generating PDF..."
+  },
+  "pdf": {
+    "seatPlan": "Seat Plan",
+    "boardingList": "Boarding List",
+    "page": "Page",
+    "of": "of",
+    "boarded": "Boarded",
+    "totalPassengers": "Total Passengers",
+    "driver": "Driver",
+    "tourGuide": "Tour Guide",
+    "legend": "Legend",
+    "occupied": "Occupied",
+    "free": "Free",
+    "blocked": "Blocked",
+    "createdOn": "Created on"
+  },
+  "groups": {
+    "title": "Group Assignment",
+    "addGroup": "Add Group",
+    "groupLabel": "Group Label",
+    "noGroups": "No groups defined",
+    "assignedTransports": "Assigned Transports",
+    "availableTransports": "Available Transports",
+    "noTransportsInGroup": "No transports assigned",
+    "addToGroup": "Add to Group",
+    "removeFromGroup": "Remove from Group",
+    "deleteGroup": "Delete Group"
+  },
+  "boardingPoints": {
+    "title": "Boarding Points",
+    "subtitle": "Manage boarding points",
+    "selectTransport": "Select a transport",
+    "transportInfo": "Transport Information",
+    "transferCategory": "Transfer Cost Category",
+    "selectCategory": "Select category",
+    "noCategory": "No category",
+    "filters": {
+      "all": "All",
+      "assignedOnly": "Assigned only",
+      "releasedOnly": "Released only"
+    },
+    "table": {
+      "assigned": "Assigned",
+      "code": "Code",
+      "location": "Location",
+      "address": "Address",
+      "postalCode": "Postal Code",
+      "pickupTime": "Pickup Time",
+      "surcharge": "Surcharge"
+    },
+    "bulkActions": {
+      "assignSelected": "Assign selected",
+      "unassignSelected": "Unassign selected",
+      "selectAll": "Select all",
+      "deselectAll": "Deselect all"
+    },
+    "surchargePanel": {
+      "title": "Manage Surcharges",
+      "category": "Category",
+      "editSurcharges": "Edit surcharges",
+      "saveSurcharges": "Save surcharges",
+      "totalCount": "Total",
+      "averageSurcharge": "Average Surcharge",
+      "noSurcharges": "No surcharges defined"
+    },
+    "messages": {
+      "noTransportSelected": "No transport selected",
+      "noTransportSelectedHint": "Select a transport from the Transport tab",
+      "assignmentSuccess": "Boarding point successfully assigned",
+      "unassignmentSuccess": "Boarding point successfully removed",
+      "surchargesSaved": "Surcharges successfully saved"
+    }
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "select": "Select"
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+  "status": {
+    "frei": "Free",
+    "offen": "Open",
+    "geschlossen": "Closed",
+    "bestaetigt": "Confirmed"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "title": "Reisen",
+  "subtitle": "Geplante Fahrten anzeigen und verwalten",
+  "searchPlaceholder": "Reisen suchen...",
+  "empty": {
+    "noMatch": "Keine Reisen entsprechen Ihrer Suche",
+    "noData": "Keine Reisen verfuegbar"
+  },
+  "selectTrip": {
+    "title": "Reise auswaehlen",
+    "hint": "Waehlen Sie eine Reise aus der Liste, um Details anzuzeigen"
+  },
+  "tabs": {
+    "tripData": "Reisedaten",
+    "transport": "Befoerderung",
+    "boardingPoints": "Zustiege",
+    "groupAssignment": "Gruppeneinteilung",
+    "accommodation": "Unterbringung",
+    "extras": "Extras"
+  },
+  "tripData": {
+    "title": "Reisedaten",
+    "tripName": "Reisetitel",
+    "tripCode": "Reise-Code",
+    "startDate": "Reisebeginn",
+    "endDate": "Reiseende",
+    "basePrice": "Grundpreis",
+    "bookingDeadline": "Buchungsfrist",
+    "noDeadline": "Keine Frist",
+    "statusOutbound": "Status Hinfahrt",
+    "statusReturn": "Status Rueckfahrt",
+    "tourGuide": "Reiseleitung",
+    "tourGuideName": "Nachname",
+    "tourGuideFirstName": "Vorname",
+    "tourGuideGender": "Geschlecht",
+    "tourGuideCode": "Code",
+    "addTourGuide": "Reiseleitung hinzufuegen",
+    "departures": "Termine",
+    "addDeparture": "Termin hinzufuegen",
+    "departureCode": "Termin-Code",
+    "noDepartures": "Keine Termine vorhanden",
+    "classificationTags": "Selektiongruppen",
+    "departureStatus": "Termin-Status",
+    "customValue": "Eigene Eingabe",
+    "enterCustomValue": "Wert eingeben...",
+    "tagDimension": {
+      "trip_type": "Reiseart",
+      "category": "Reisekategorie",
+      "region": "Region",
+      "media_partner": "Medienpartner",
+      "responsible_pm": "Verantwortlich",
+      "risk": "Risikostufe"
+    },
+    "status": {
+      "frei": "Frei",
+      "warteliste": "Warteliste (W)",
+      "anfrage": "Anfrage"
+    }
+  },
+  "details": {
+    "startingFrom": "Ab",
+    "departure": "Abfahrt",
+    "return": "Rueckfahrt",
+    "outboundStatus": "Hinfahrt-Status",
+    "returnStatus": "Rueckfahrt-Status"
+  },
+  "transports": {
+    "title": "Transporte",
+    "empty": "Keine Transporte fuer diese Reise geplant",
+    "group": "Gruppe",
+    "outbound": "Hinfahrt",
+    "return": "Rueckfahrt",
+    "date": "Datum",
+    "seatMap": "Sitzplan",
+    "noSeatMap": "Kein Sitzplan zugewiesen",
+    "boardingPoints": "Zustiegspunkte",
+    "assigned": "zugewiesen",
+    "seatLayoutPreview": "Sitzplan-Vorschau",
+    "more": "+{{count}} weitere",
+    "type": "Typ",
+    "bus": "Bus",
+    "car": "PKW",
+    "pkw": "PKW (Eigene Anreise)",
+    "continuationLeg": "Weiterfahrt",
+    "addContinuationLeg": "Weiterfahrt hinzufuegen",
+    "addTransport": "Transport hinzufuegen",
+    "internalNotes": "Interne Hinweise",
+    "transferCostCategory": "Transfer-Kostenkategorie",
+    "printSeatPlan": "Sitzplan drucken",
+    "printBoardingList": "Zustiegsliste drucken",
+    "generatePDF": "PDF erstellen",
+    "download": "Herunterladen",
+    "generatingPDF": "PDF wird erstellt..."
+  },
+  "pdf": {
+    "seatPlan": "Sitzplan",
+    "boardingList": "Zustiegsliste",
+    "page": "Seite",
+    "of": "von",
+    "boarded": "Zugestiegen",
+    "totalPassengers": "Gesamt Passagiere",
+    "driver": "Fahrer",
+    "tourGuide": "Reiseleiter",
+    "legend": "Legende",
+    "occupied": "Besetzt",
+    "free": "Frei",
+    "blocked": "Blockiert",
+    "createdOn": "Erstellt am"
+  },
+  "groups": {
+    "title": "Gruppeneinteilung",
+    "addGroup": "Gruppe hinzufuegen",
+    "groupLabel": "Gruppenbezeichnung",
+    "noGroups": "Keine Gruppen definiert",
+    "assignedTransports": "Zugewiesene Transporte",
+    "availableTransports": "Verfuegbare Transporte",
+    "noTransportsInGroup": "Keine Transporte zugewiesen",
+    "addToGroup": "Zur Gruppe hinzufuegen",
+    "removeFromGroup": "Aus Gruppe entfernen",
+    "deleteGroup": "Gruppe loeschen"
+  },
+  "boardingPoints": {
+    "title": "Zustiege",
+    "subtitle": "Zustiegspunkte verwalten",
+    "selectTransport": "Waehlen Sie einen Transport aus",
+    "transportInfo": "Transport-Information",
+    "transferCategory": "Transferkostenkategorie",
+    "selectCategory": "Kategorie waehlen",
+    "noCategory": "Keine Kategorie",
+    "filters": {
+      "all": "Alle",
+      "assignedOnly": "Nur zugewiesene",
+      "releasedOnly": "Nur freigegeben"
+    },
+    "table": {
+      "assigned": "Zugewiesen",
+      "code": "Code",
+      "location": "Ort",
+      "address": "Stelle",
+      "postalCode": "PLZ",
+      "pickupTime": "Abholzeit",
+      "surcharge": "Aufpreis"
+    },
+    "bulkActions": {
+      "assignSelected": "Ausgewaehlte zuweisen",
+      "unassignSelected": "Ausgewaehlte entfernen",
+      "selectAll": "Alle auswaehlen",
+      "deselectAll": "Auswahl aufheben"
+    },
+    "surchargePanel": {
+      "title": "Aufpreise verwalten",
+      "category": "Kategorie",
+      "editSurcharges": "Aufpreise bearbeiten",
+      "saveSurcharges": "Aufpreise speichern",
+      "totalCount": "Gesamt",
+      "averageSurcharge": "Durchschnittlicher Aufpreis",
+      "noSurcharges": "Keine Aufpreise definiert"
+    },
+    "messages": {
+      "noTransportSelected": "Kein Transport ausgewaehlt",
+      "noTransportSelectedHint": "Waehlen Sie einen Transport aus der Befoerderung-Tab",
+      "assignmentSuccess": "Zustiegspunkt erfolgreich zugewiesen",
+      "unassignmentSuccess": "Zustiegspunkt erfolgreich entfernt",
+      "surchargesSaved": "Aufpreise erfolgreich gespeichert"
+    }
+  },
+  "actions": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Loeschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufuegen",
+    "select": "Auswaehlen"
+  },
+  "gender": {
+    "male": "Maennlich",
+    "female": "Weiblich",
+    "other": "Divers"
+  },
+  "status": {
+    "frei": "Frei",
+    "offen": "Offen",
+    "geschlossen": "Geschlossen",
+    "bestaetigt": "Bestaetigt"
+  }
+}

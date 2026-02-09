@@ -1,0 +1,47 @@
+{
+  "title": "Zustiegspunkte",
+  "subtitle": "Abhol- und Absetzorte verwalten",
+  "searchPlaceholder": "Nach Ort, Adresse oder Code suchen...",
+  "assignedOnly": "Nur zugewiesene",
+  "selection": {
+    "selected": "{{count}} Zustiegspunkt ausgewaehlt",
+    "selected_plural": "{{count}} Zustiegspunkte ausgewaehlt"
+  },
+  "table": {
+    "location": "Ort",
+    "address": "Adresse",
+    "time": "Zeit",
+    "code": "Code",
+    "status": "Status"
+  },
+  "actions": {
+    "addToRoute": "Zur Route hinzufuegen",
+    "removeFromRoute": "Von Route entfernen"
+  },
+  "empty": {
+    "title": "Keine Zustiegspunkte gefunden",
+    "searchHint": "Versuchen Sie, Ihre Suche oder Filter anzupassen",
+    "noData": "Keine Zustiegspunkte verfuegbar"
+  },
+  "routeConfig": {
+    "title": "Routenkonfiguration",
+    "direction": "Richtung",
+    "outbound": "Hinfahrt",
+    "return": "Rueckfahrt",
+    "transferCost": "Transferkosten-Kategorie",
+    "none": "Keine"
+  },
+  "routeSummary": {
+    "title": "Routenzusammenfassung",
+    "assignedPoints": "Zugewiesene Punkte",
+    "totalPoints": "Gesamte Punkte"
+  },
+  "pickupTime": "Abfahrtszeit",
+  "noTimeSet": "--:-- Uhr",
+  "pickupNote": "Notiz",
+  "outboundPoints": "Zustiege Hinfahrt",
+  "returnPoints": "Zustiege Rueckfahrt",
+  "needsEnrichment": "Datenpflege benoetigt",
+  "surcharge": "Zuschlag",
+  "enrichedFormat": "{{postalCode}} {{city}}, {{streetAddress}}"
+}

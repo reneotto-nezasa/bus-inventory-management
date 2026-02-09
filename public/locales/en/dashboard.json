@@ -1,0 +1,36 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Overview of your fleet management",
+  "stats": {
+    "seatMaps": "Seat Maps",
+    "activeBoardingPoints": "Active Boarding Points",
+    "totalTrips": "Total Trips",
+    "transportsToday": "Transports Today"
+  },
+  "quickActions": {
+    "title": "Quick Actions",
+    "createSeatMap": "Create Seat Map",
+    "createSeatMapDesc": "Design a new bus layout",
+    "manageBoarding": "Manage Boarding",
+    "manageBoardingDesc": "Configure pickup points",
+    "viewTrips": "View Trips",
+    "viewTripsDesc": "Browse scheduled journeys",
+    "fleetOverview": "Fleet Overview",
+    "fleetOverviewDesc": "Check seat availability"
+  },
+  "recentSeatMaps": {
+    "title": "Recent Seat Maps",
+    "empty": "No seat maps yet",
+    "createFirst": "Create your first seat map"
+  },
+  "recentTrips": {
+    "title": "Recent Trips",
+    "empty": "No trips scheduled"
+  },
+  "systemStatus": {
+    "title": "System Status",
+    "database": "Database",
+    "syncStatus": "Sync Status",
+    "lastRefresh": "Last Refresh"
+  }
+}

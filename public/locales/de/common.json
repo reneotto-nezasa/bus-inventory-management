@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "seatMaps": "Sitzplaene",
+    "boardingPoints": "Zustiegspunkte",
+    "trips": "Reisen",
+    "import": "Datenimport"
+  },
+  "actions": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Loeschen",
+    "edit": "Bearbeiten",
+    "duplicate": "Duplizieren",
+    "create": "Erstellen",
+    "back": "Zurueck",
+    "viewAll": "Alle anzeigen",
+    "clear": "Leeren",
+    "approve": "Freigeben",
+    "block": "Sperren"
+  },
+  "filters": {
+    "all": "Alle",
+    "search": "Suchen",
+    "active": "Aktiv",
+    "blocked": "Gesperrt"
+  },
+  "status": {
+    "connected": "Verbunden",
+    "upToDate": "Aktuell",
+    "available": "Verfuegbar",
+    "booked": "Gebucht",
+    "open": "Offen",
+    "closed": "Geschlossen"
+  },
+  "time": {
+    "justNow": "Gerade eben",
+    "minutesAgo": "{{count}}m her",
+    "hoursAgo": "{{count}}h her",
+    "daysAgo": "{{count}}T her"
+  },
+  "units": {
+    "rows": "Reihen",
+    "columns": "Spalten"
+  },
+  "tourGuide": {
+    "title": "Reiseleiter",
+    "add": "Reiseleiter hinzufuegen",
+    "name": "Name",
+    "firstName": "Vorname",
+    "code": "Kuerzel",
+    "gender": "Geschlecht",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "assignSeat": "Sitzplatz zuweisen",
+    "noSeatPlan": "Zuerst Sitzplan zuweisen",
+    "seatAssigned": "Sitz {{seat}} zugewiesen",
+    "noSeat": "Kein Sitz zugewiesen",
+    "male": "Maennlich",
+    "female": "Weiblich",
+    "other": "Divers",
+    "confirmDelete": "Moechten Sie diesen Reiseleiter wirklich entfernen?",
+    "noGuides": "Keine Reiseleiter zugewiesen"
+  }
+}

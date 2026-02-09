@@ -1,0 +1,88 @@
+{
+  "title": "Accommodation",
+  "subtitle": "Manage rooms and cabins",
+  "viewModes": {
+    "structured": "Structured",
+    "flatList": "List"
+  },
+  "fields": {
+    "code": "Code",
+    "name": "Name",
+    "roomType": "Room Type",
+    "price": "Price",
+    "occupancy": "Occupancy",
+    "mealPlan": "Meal Plan",
+    "status": "Status",
+    "nights": "Nights",
+    "checkinDate": "Check-in",
+    "checkoutDate": "Check-out",
+    "deckName": "Deck",
+    "amenities": "Amenities",
+    "description": "Description",
+    "currency": "Currency"
+  },
+  "roomTypes": {
+    "DZ": "Double Room",
+    "EZ": "Single Room",
+    "Suite": "Suite",
+    "Zweibettkabine": "Twin Cabin",
+    "Alleinbenutzung": "Single Use"
+  },
+  "mealPlans": {
+    "VP": "Full Board",
+    "UEF": "Bed & Breakfast",
+    "LP": "As Per Program"
+  },
+  "statuses": {
+    "Frei": "Available",
+    "Anfrage": "On Request"
+  },
+  "actions": {
+    "add": "Add Accommodation",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "empty": {
+    "title": "No Accommodations",
+    "subtitle": "Add accommodation options for this departure"
+  },
+  "form": {
+    "title": "Accommodation",
+    "createTitle": "New Accommodation",
+    "editTitle": "Edit Accommodation",
+    "compositeAccommodation": "Composite Accommodation",
+    "hotelComponents": "Hotel Programs",
+    "addHotel": "Add Hotel",
+    "removeHotel": "Remove"
+  },
+  "composite": {
+    "title": "Hotel Programs",
+    "preProgram": "Pre-Program",
+    "postProgram": "Post-Program",
+    "hotelPartner": "Hotel Partner",
+    "hotelName": "Hotel Name"
+  },
+  "deck": {
+    "Smaragddeck": "Emerald Deck",
+    "Rubindeck": "Ruby Deck",
+    "Diamantdeck": "Diamond Deck",
+    "Hauptdeck": "Main Deck",
+    "Oberdeck": "Upper Deck",
+    "Sonnendeck": "Sun Deck"
+  },
+  "summary": {
+    "total": "Total",
+    "perPerson": "per person",
+    "accommodations": "Accommodations",
+    "priceRange": "Price Range"
+  },
+  "filters": {
+    "all": "All",
+    "deck": "Deck",
+    "status": "Status",
+    "roomType": "Room Type"
+  },
+  "confirmDelete": "Do you really want to delete this accommodation?"
+}

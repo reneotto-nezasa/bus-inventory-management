@@ -1,0 +1,88 @@
+{
+  "title": "Unterbringung",
+  "subtitle": "Zimmer und Kabinen verwalten",
+  "viewModes": {
+    "structured": "Strukturiert",
+    "flatList": "Liste"
+  },
+  "fields": {
+    "code": "Code",
+    "name": "Name",
+    "roomType": "Zimmertyp",
+    "price": "Preis",
+    "occupancy": "Belegung",
+    "mealPlan": "Verpflegung",
+    "status": "Status",
+    "nights": "Naechte",
+    "checkinDate": "Anreise",
+    "checkoutDate": "Abreise",
+    "deckName": "Deck",
+    "amenities": "Ausstattung",
+    "description": "Beschreibung",
+    "currency": "Waehrung"
+  },
+  "roomTypes": {
+    "DZ": "Doppelzimmer",
+    "EZ": "Einzelzimmer",
+    "Suite": "Suite",
+    "Zweibettkabine": "Zweibettkabine",
+    "Alleinbenutzung": "Alleinbenutzung"
+  },
+  "mealPlans": {
+    "VP": "Vollpension",
+    "UEF": "Uebernachtung mit Fruehstueck",
+    "LP": "Laut Programm"
+  },
+  "statuses": {
+    "Frei": "Frei",
+    "Anfrage": "Anfrage"
+  },
+  "actions": {
+    "add": "Unterbringung hinzufuegen",
+    "edit": "Bearbeiten",
+    "delete": "Loeschen",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "empty": {
+    "title": "Keine Unterbringungen",
+    "subtitle": "Fuegen Sie Unterbringungsoptionen fuer diese Abfahrt hinzu"
+  },
+  "form": {
+    "title": "Unterbringung",
+    "createTitle": "Neue Unterbringung",
+    "editTitle": "Unterbringung bearbeiten",
+    "compositeAccommodation": "Zusammengesetzte Unterbringung",
+    "hotelComponents": "Hotelprogramme",
+    "addHotel": "Hotel hinzufuegen",
+    "removeHotel": "Entfernen"
+  },
+  "composite": {
+    "title": "Hotelprogramme",
+    "preProgram": "Vorprogramm",
+    "postProgram": "Nachprogramm",
+    "hotelPartner": "Hotelpartner",
+    "hotelName": "Hotelname"
+  },
+  "deck": {
+    "Smaragddeck": "Smaragddeck",
+    "Rubindeck": "Rubindeck",
+    "Diamantdeck": "Diamantdeck",
+    "Hauptdeck": "Hauptdeck",
+    "Oberdeck": "Oberdeck",
+    "Sonnendeck": "Sonnendeck"
+  },
+  "summary": {
+    "total": "Gesamt",
+    "perPerson": "pro Person",
+    "accommodations": "Unterbringungen",
+    "priceRange": "Preisspanne"
+  },
+  "filters": {
+    "all": "Alle",
+    "deck": "Deck",
+    "status": "Status",
+    "roomType": "Zimmertyp"
+  },
+  "confirmDelete": "Moechten Sie diese Unterbringung wirklich loeschen?"
+}

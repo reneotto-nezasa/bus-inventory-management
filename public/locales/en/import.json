@@ -1,0 +1,78 @@
+{
+  "title": "Data Import",
+  "subtitle": "Migrate data from BusPro",
+  "tabs": {
+    "busproXML": "BusPro XML",
+    "boardingPoints": "Boarding Points",
+    "hotelPartners": "Hotel Partners"
+  },
+  "busproXML": {
+    "title": "BusPro XML Import",
+    "description": "Import trip data from a BusPro XML file",
+    "previewTitle": "Preview",
+    "unresolvedBoardingPoints": "Unresolved Boarding Points",
+    "unresolvedHotels": "Unresolved Hotels",
+    "placeholderWarning": "Placeholders will be created for unresolved references and need manual enrichment"
+  },
+  "boardingPoints": {
+    "title": "Import Boarding Points",
+    "description": "Import boarding point master data from CSV or JSON",
+    "requiredFields": "Required Fields",
+    "cityField": "City",
+    "postalCodeField": "Postal Code",
+    "addressField": "Address",
+    "descriptionField": "Description",
+    "timeField": "Pickup Time",
+    "optional": "Optional"
+  },
+  "hotelPartners": {
+    "title": "Import Hotel Partners",
+    "description": "Import hotel partner master data from CSV or JSON",
+    "requiredFields": "Required Fields",
+    "nameField": "Name",
+    "cityField": "City",
+    "addressField": "Address",
+    "optional": "Optional"
+  },
+  "uploadZone": {
+    "title": "Drop file here",
+    "dragDrop": "or click to select",
+    "acceptedTypes": "Accepted file types",
+    "selectFile": "Select File"
+  },
+  "preview": {
+    "title": "Preview",
+    "records": "records",
+    "showingFirst": "Showing first {{count}} entries"
+  },
+  "report": {
+    "successTitle": "Import Successful",
+    "completedTitle": "Import Completed",
+    "trips": "Trips",
+    "departures": "Departures",
+    "transports": "Transports",
+    "accommodations": "Accommodations",
+    "extras": "Extras",
+    "boardingPoints": "Boarding Points",
+    "earlyBirdDiscounts": "Early Bird Discounts",
+    "newRecords": "New Records",
+    "updatedRecords": "Updated",
+    "unchangedRecords": "Unchanged",
+    "unresolvedBoardingPoints": "Unresolved Boarding Points",
+    "unresolvedHotels": "Unresolved Hotels",
+    "placeholdersCreated": "{{count}} placeholders created",
+    "warnings": "Warnings",
+    "errors": "Errors"
+  },
+  "progress": {
+    "importing": "Importing...",
+    "importingBusPro": "Importing BusPro data...",
+    "importingBoardingPoints": "Importing boarding points...",
+    "importingHotelPartners": "Importing hotel partners..."
+  },
+  "actions": {
+    "startImport": "Start Import",
+    "cancel": "Cancel",
+    "importAnother": "Import Another File"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "title": "Seat Maps",
+  "subtitle": "Manage your vehicle seat layouts",
+  "actions": {
+    "useTemplate": "Use Template",
+    "newSeatMap": "New Seat Map",
+    "createSeatMap": "Create Seat Map",
+    "openInEditor": "Open in Editor"
+  },
+  "filters": {
+    "bus": "Bus",
+    "ship": "Ship",
+    "searchPlaceholder": "Search seat maps..."
+  },
+  "empty": {
+    "title": "No seat maps found",
+    "searchHint": "Try a different search term",
+    "createHint": "Create your first seat map to get started"
+  },
+  "card": {
+    "updated": "Updated",
+    "rowsCols": "{{rows}} rows x {{cols}} cols"
+  },
+  "preview": {
+    "title": "Preview"
+  },
+  "templates": {
+    "title": "Choose a Template",
+    "subtitle": "Start with a pre-configured layout"
+  },
+  "editor": {
+    "noSeatMap": "No seat map selected",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom"
+  },
+  "properties": {
+    "title": "Properties",
+    "selectSeat": "Click on a seat to view and edit its properties",
+    "seatLabel": "Seat Label",
+    "type": "Type",
+    "block": "Block",
+    "row": "Row",
+    "position": "Position",
+    "status": "Status",
+    "passengerInfo": "Passenger Info",
+    "bookingRef": "Ref"
+  },
+  "confirmDelete": "Are you sure you want to delete this seat map?",
+  "seatTypes": {
+    "empty": "Empty",
+    "sitzplatz": "Seat",
+    "sitzplatz_rueckwaerts": "Seat backward",
+    "sitzplatz_gang": "Seat aisle",
+    "sitzplatz_fenster": "Seat window",
+    "tisch": "Table",
+    "wc": "WC",
+    "kueche": "Kitchen",
+    "fahrer": "Driver",
+    "reiseleiter": "Tour guide",
+    "einstieg": "Entry",
+    "holm": "Rail",
+    "aufgang": "Stairs up",
+    "abgang": "Stairs down"
+  },
+  "selectType": "Select Type",
+  "reassignment": {
+    "title": "Seat Reassignment",
+    "subtitle": "Assign and move passengers to seats",
+    "assignSeat": "Assign seat",
+    "freeSeat": "Free seat",
+    "movePassenger": "Move passenger",
+    "unassigned": "Unassigned",
+    "undo": "Undo",
+    "noSeatMap": "No seat map assigned",
+    "noSeatMapHint": "Please assign a seat map to this transport",
+    "clickSeatToAssign": "Click on a free seat to assign a passenger",
+    "clickSeatToFree": "Click on an occupied seat to free it",
+    "clickSeatToMove": "Click on a free seat to move the passenger",
+    "selectPassenger": "Select passenger",
+    "passengerSelected": "Passenger selected",
+    "operationHistory": "History",
+    "noOperations": "No operations",
+    "free": "Free",
+    "occupied": "Occupied",
+    "blocked": "Blocked",
+    "confirmFree": "Do you really want to free this seat?",
+    "confirmMove": "Do you really want to move this passenger?",
+    "success": {
+      "assigned": "Passenger successfully assigned",
+      "freed": "Seat successfully freed",
+      "moved": "Passenger successfully moved",
+      "undone": "Operation successfully undone"
+    },
+    "error": {
+      "assignFailed": "Assignment failed",
+      "freeFailed": "Freeing seat failed",
+      "moveFailed": "Moving passenger failed",
+      "undoFailed": "Undo operation failed"
+    },
+    "templates": {
+      "hummel28": "28+1 Hummel Bus",
+      "novermann44": "44+1 Novermann Bus"
+    }
+  },
+  "seat": {
+    "block": "Block",
+    "unblock": "Unblock",
+    "blocked": "Blocked",
+    "blockReason": "Block Reason",
+    "available": "Available",
+    "assignPlan": "Assign Seat Plan",
+    "planNote": "Seat Plan Note",
+    "tourGuide": "Tour Guide",
+    "legendTourGuide": "Tour Guide Seat"
+  },
+  "preference": {
+    "title": "Passenger Preferences",
+    "position": "Position",
+    "companion": "Companion",
+    "accessibility": "Accessibility",
+    "other": "Other",
+    "fulfilled": "Fulfilled",
+    "pending": "Pending",
+    "name": "Name",
+    "seatNumber": "Seat",
+    "type": "Type",
+    "text": "Preference",
+    "status": "Status",
+    "noPreferences": "No preferences available"
+  },
+  "passenger": {
+    "details": "Passenger Details",
+    "bookingRef": "Booking Reference",
+    "accommodation": "Accommodation",
+    "contact": "Contact Information",
+    "seatHistory": "Seat History",
+    "selectSeat": "Select an occupied seat to view details",
+    "assignedOn": "Assigned on",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "bulk": {
+    "smartAssign": "Smart Assign All",
+    "preview": "Bulk Assignment Preview",
+    "suggestedSeat": "Suggested Seat",
+    "reason": "Reason",
+    "confidence": "Confidence",
+    "conflicts": "Conflicts",
+    "applyAll": "Apply All",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "companionReason": "Companion: next to {{name}} in {{seat}}",
+    "positionReason": "Position: {{preference}}",
+    "noUnassigned": "All passengers are assigned",
+    "assignmentCount": "{{count}} passengers to assign",
+    "conflictWarning": "{{count}} conflict(s) detected"
+  }
+}

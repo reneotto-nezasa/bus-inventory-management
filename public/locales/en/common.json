@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "seatMaps": "Seat Maps",
+    "boardingPoints": "Boarding Points",
+    "trips": "Trips",
+    "import": "Import"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "create": "Create",
+    "back": "Back",
+    "viewAll": "View all",
+    "clear": "Clear",
+    "approve": "Approve",
+    "block": "Block"
+  },
+  "filters": {
+    "all": "All",
+    "search": "Search",
+    "active": "Active",
+    "blocked": "Blocked"
+  },
+  "status": {
+    "connected": "Connected",
+    "upToDate": "Up to date",
+    "available": "Available",
+    "booked": "Booked",
+    "open": "Open",
+    "closed": "Closed"
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago"
+  },
+  "units": {
+    "rows": "rows",
+    "columns": "columns"
+  },
+  "tourGuide": {
+    "title": "Tour Guides",
+    "add": "Add Tour Guide",
+    "name": "Name",
+    "firstName": "First Name",
+    "code": "Code",
+    "gender": "Gender",
+    "phone": "Phone",
+    "email": "Email",
+    "assignSeat": "Assign Seat",
+    "noSeatPlan": "Assign a seat plan first",
+    "seatAssigned": "Seat {{seat}} assigned",
+    "noSeat": "No seat assigned",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "confirmDelete": "Are you sure you want to remove this tour guide?",
+    "noGuides": "No tour guides assigned"
+  }
+}

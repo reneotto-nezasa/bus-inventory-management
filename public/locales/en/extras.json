@@ -1,0 +1,70 @@
+{
+  "title": "Extras",
+  "subtitle": "Manage additional services and discounts",
+  "sections": {
+    "excursions": "Excursions",
+    "dining": "Dining",
+    "earlyBird": "Early Bird"
+  },
+  "fields": {
+    "type": "Type",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "date": "Date",
+    "status": "Status",
+    "included": "Included",
+    "bookingDeadline": "Booking Deadline",
+    "discountValue": "Discount",
+    "discountType": "Discount Type",
+    "travelDateFrom": "Travel Date From",
+    "travelDateTo": "Travel Date To"
+  },
+  "types": {
+    "excursion": "Excursion",
+    "dining": "Dining",
+    "insurance": "Insurance"
+  },
+  "statuses": {
+    "Frei": "Available",
+    "Anfrage": "On Request",
+    "Ausgebucht": "Sold Out"
+  },
+  "discountTypes": {
+    "flat": "Fixed Amount",
+    "percent": "Percent"
+  },
+  "actions": {
+    "addExtra": "Add Extra",
+    "addDiscount": "Add Discount",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "empty": {
+    "excursions": "No Excursions",
+    "dining": "No Dining Options",
+    "earlyBird": "No Early Bird Discounts",
+    "subtitle": "Add extras for this departure"
+  },
+  "form": {
+    "createTitle": "New Extra",
+    "editTitle": "Edit Extra",
+    "discountCreateTitle": "New Early Bird Discount",
+    "discountEditTitle": "Edit Early Bird Discount"
+  },
+  "summary": {
+    "total": "Total",
+    "extras": "Extras",
+    "priceRange": "Price Range",
+    "discounts": "Discounts"
+  },
+  "labels": {
+    "fruehbucher": "Early Bird",
+    "altersermaessigung": "Age Discount",
+    "included": "Included"
+  },
+  "confirmDelete": "Do you really want to delete this extra?",
+  "confirmDeleteDiscount": "Do you really want to delete this discount?"
+}

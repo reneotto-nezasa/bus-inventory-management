@@ -1,0 +1,78 @@
+{
+  "title": "Datenimport",
+  "subtitle": "Daten aus BusPro migrieren",
+  "tabs": {
+    "busproXML": "BusPro XML",
+    "boardingPoints": "Zustiegspunkte",
+    "hotelPartners": "Hotelpartner"
+  },
+  "busproXML": {
+    "title": "BusPro XML Import",
+    "description": "Importieren Sie Reisedaten aus einer BusPro XML-Datei",
+    "previewTitle": "Vorschau",
+    "unresolvedBoardingPoints": "Nicht aufgeloeste Zustiegspunkte",
+    "unresolvedHotels": "Nicht aufgeloeste Hotels",
+    "placeholderWarning": "Platzhalter werden fuer nicht aufgeloeste Referenzen erstellt und muessen manuell angereichert werden"
+  },
+  "boardingPoints": {
+    "title": "Zustiegspunkte importieren",
+    "description": "Stammdaten der Zustiegspunkte aus CSV oder JSON importieren",
+    "requiredFields": "Erforderliche Felder",
+    "cityField": "Stadt",
+    "postalCodeField": "Postleitzahl",
+    "addressField": "Adresse",
+    "descriptionField": "Beschreibung",
+    "timeField": "Abholzeit",
+    "optional": "Optional"
+  },
+  "hotelPartners": {
+    "title": "Hotelpartner importieren",
+    "description": "Stammdaten der Hotelpartner aus CSV oder JSON importieren",
+    "requiredFields": "Erforderliche Felder",
+    "nameField": "Name",
+    "cityField": "Stadt",
+    "addressField": "Adresse",
+    "optional": "Optional"
+  },
+  "uploadZone": {
+    "title": "Datei hierher ziehen",
+    "dragDrop": "oder hier klicken zum Auswaehlen",
+    "acceptedTypes": "Akzeptierte Dateitypen",
+    "selectFile": "Datei auswaehlen"
+  },
+  "preview": {
+    "title": "Vorschau",
+    "records": "Datensaetze",
+    "showingFirst": "Zeige die ersten {{count}} Eintraege"
+  },
+  "report": {
+    "successTitle": "Import erfolgreich",
+    "completedTitle": "Import abgeschlossen",
+    "trips": "Reisen",
+    "departures": "Termine",
+    "transports": "Transporte",
+    "accommodations": "Unterkuenfte",
+    "extras": "Extras",
+    "boardingPoints": "Zustiegspunkte",
+    "earlyBirdDiscounts": "Fruehbucher-Rabatte",
+    "newRecords": "Neue Datensaetze",
+    "updatedRecords": "Aktualisiert",
+    "unchangedRecords": "Unveraendert",
+    "unresolvedBoardingPoints": "Nicht aufgeloeste Zustiegspunkte",
+    "unresolvedHotels": "Nicht aufgeloeste Hotels",
+    "placeholdersCreated": "{{count}} Platzhalter erstellt",
+    "warnings": "Warnungen",
+    "errors": "Fehler"
+  },
+  "progress": {
+    "importing": "Importiere...",
+    "importingBusPro": "Importiere BusPro Daten...",
+    "importingBoardingPoints": "Importiere Zustiegspunkte...",
+    "importingHotelPartners": "Importiere Hotelpartner..."
+  },
+  "actions": {
+    "startImport": "Import starten",
+    "cancel": "Abbrechen",
+    "importAnother": "Weitere Datei importieren"
+  }
+}

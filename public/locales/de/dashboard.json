@@ -1,0 +1,36 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Ueberblick ueber Ihre Flottenverwaltung",
+  "stats": {
+    "seatMaps": "Sitzplaene",
+    "activeBoardingPoints": "Aktive Zustiegspunkte",
+    "totalTrips": "Gesamte Reisen",
+    "transportsToday": "Transporte heute"
+  },
+  "quickActions": {
+    "title": "Schnellaktionen",
+    "createSeatMap": "Sitzplan erstellen",
+    "createSeatMapDesc": "Neues Buslayout gestalten",
+    "manageBoarding": "Zustieg verwalten",
+    "manageBoardingDesc": "Abholpunkte konfigurieren",
+    "viewTrips": "Reisen anzeigen",
+    "viewTripsDesc": "Geplante Fahrten durchsuchen",
+    "fleetOverview": "Flottenueberblick",
+    "fleetOverviewDesc": "Sitzplatzverfuegbarkeit pruefen"
+  },
+  "recentSeatMaps": {
+    "title": "Aktuelle Sitzplaene",
+    "empty": "Noch keine Sitzplaene",
+    "createFirst": "Erstellen Sie Ihren ersten Sitzplan"
+  },
+  "recentTrips": {
+    "title": "Aktuelle Reisen",
+    "empty": "Keine Reisen geplant"
+  },
+  "systemStatus": {
+    "title": "Systemstatus",
+    "database": "Datenbank",
+    "syncStatus": "Sync-Status",
+    "lastRefresh": "Letzte Aktualisierung"
+  }
+}

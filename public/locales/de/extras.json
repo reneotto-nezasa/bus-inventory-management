@@ -1,0 +1,70 @@
+{
+  "title": "Extras",
+  "subtitle": "Zusatzleistungen und Rabatte verwalten",
+  "sections": {
+    "excursions": "Eintritte",
+    "dining": "Verpflegung",
+    "earlyBird": "Fruehbucher"
+  },
+  "fields": {
+    "type": "Typ",
+    "name": "Name",
+    "description": "Beschreibung",
+    "price": "Preis",
+    "date": "Datum",
+    "status": "Status",
+    "included": "Inklusiv",
+    "bookingDeadline": "Buchungsfrist",
+    "discountValue": "Rabatt",
+    "discountType": "Rabattart",
+    "travelDateFrom": "Reisedatum von",
+    "travelDateTo": "Reisedatum bis"
+  },
+  "types": {
+    "excursion": "Eintritt",
+    "dining": "Verpflegung",
+    "insurance": "Versicherung"
+  },
+  "statuses": {
+    "Frei": "Frei",
+    "Anfrage": "Anfrage",
+    "Ausgebucht": "Ausgebucht"
+  },
+  "discountTypes": {
+    "flat": "Festbetrag",
+    "percent": "Prozent"
+  },
+  "actions": {
+    "addExtra": "Extra hinzufuegen",
+    "addDiscount": "Rabatt hinzufuegen",
+    "edit": "Bearbeiten",
+    "delete": "Loeschen",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "empty": {
+    "excursions": "Keine Eintritte",
+    "dining": "Keine Verpflegung",
+    "earlyBird": "Keine Fruehbucherrabatte",
+    "subtitle": "Fuegen Sie Extras fuer diese Abfahrt hinzu"
+  },
+  "form": {
+    "createTitle": "Neues Extra",
+    "editTitle": "Extra bearbeiten",
+    "discountCreateTitle": "Neuer Fruehbucherrabatt",
+    "discountEditTitle": "Fruehbucherrabatt bearbeiten"
+  },
+  "summary": {
+    "total": "Gesamt",
+    "extras": "Extras",
+    "priceRange": "Preisspanne",
+    "discounts": "Rabatte"
+  },
+  "labels": {
+    "fruehbucher": "Fruehbucher",
+    "altersermaessigung": "Altersermaessigung",
+    "included": "Inklusiv"
+  },
+  "confirmDelete": "Moechten Sie dieses Extra wirklich loeschen?",
+  "confirmDeleteDiscount": "Moechten Sie diesen Rabatt wirklich loeschen?"
+}

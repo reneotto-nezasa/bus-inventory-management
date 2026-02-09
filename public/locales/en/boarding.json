@@ -1,0 +1,47 @@
+{
+  "title": "Boarding Points",
+  "subtitle": "Manage pickup and drop-off locations",
+  "searchPlaceholder": "Search by location, address, or code...",
+  "assignedOnly": "Assigned only",
+  "selection": {
+    "selected": "{{count}} boarding point selected",
+    "selected_plural": "{{count}} boarding points selected"
+  },
+  "table": {
+    "location": "Location",
+    "address": "Address",
+    "time": "Time",
+    "code": "Code",
+    "status": "Status"
+  },
+  "actions": {
+    "addToRoute": "Add to route",
+    "removeFromRoute": "Remove from route"
+  },
+  "empty": {
+    "title": "No boarding points found",
+    "searchHint": "Try adjusting your search or filters",
+    "noData": "No boarding points available"
+  },
+  "routeConfig": {
+    "title": "Route Configuration",
+    "direction": "Direction",
+    "outbound": "Outbound",
+    "return": "Return",
+    "transferCost": "Transfer Cost Category",
+    "none": "None"
+  },
+  "routeSummary": {
+    "title": "Route Summary",
+    "assignedPoints": "Assigned Points",
+    "totalPoints": "Total Points"
+  },
+  "pickupTime": "Pickup Time",
+  "noTimeSet": "--:-- ",
+  "pickupNote": "Note",
+  "outboundPoints": "Outbound Boarding Points",
+  "returnPoints": "Return Boarding Points",
+  "needsEnrichment": "Needs data enrichment",
+  "surcharge": "Surcharge",
+  "enrichedFormat": "{{postalCode}} {{city}}, {{streetAddress}}"
+}

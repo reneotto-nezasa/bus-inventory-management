@@ -1,0 +1,160 @@
+{
+  "title": "Sitzplaene",
+  "subtitle": "Verwalten Sie Ihre Fahrzeug-Sitzanordnungen",
+  "actions": {
+    "useTemplate": "Vorlage verwenden",
+    "newSeatMap": "Neuer Sitzplan",
+    "createSeatMap": "Sitzplan erstellen",
+    "openInEditor": "Im Editor oeffnen"
+  },
+  "filters": {
+    "bus": "Bus",
+    "ship": "Schiff",
+    "searchPlaceholder": "Sitzplaene durchsuchen..."
+  },
+  "empty": {
+    "title": "Keine Sitzplaene gefunden",
+    "searchHint": "Versuchen Sie einen anderen Suchbegriff",
+    "createHint": "Erstellen Sie Ihren ersten Sitzplan"
+  },
+  "card": {
+    "updated": "Aktualisiert",
+    "rowsCols": "{{rows}} Reihen x {{cols}} Spalten"
+  },
+  "preview": {
+    "title": "Vorschau"
+  },
+  "templates": {
+    "title": "Vorlage auswaehlen",
+    "subtitle": "Beginnen Sie mit einem vorkonfigurierten Layout"
+  },
+  "editor": {
+    "noSeatMap": "Kein Sitzplan ausgewaehlt",
+    "zoomIn": "Vergroessern",
+    "zoomOut": "Verkleinern",
+    "resetZoom": "Zoom zuruecksetzen"
+  },
+  "properties": {
+    "title": "Eigenschaften",
+    "selectSeat": "Klicken Sie auf einen Sitz, um seine Eigenschaften anzuzeigen und zu bearbeiten",
+    "seatLabel": "Sitzbezeichnung",
+    "type": "Typ",
+    "block": "Block",
+    "row": "Reihe",
+    "position": "Position",
+    "status": "Status",
+    "passengerInfo": "Passagierinformationen",
+    "bookingRef": "Ref"
+  },
+  "confirmDelete": "Sind Sie sicher, dass Sie diesen Sitzplan loeschen moechten?",
+  "seatTypes": {
+    "empty": "Leer",
+    "sitzplatz": "Sitzplatz",
+    "sitzplatz_rueckwaerts": "Sitzplatz rueckwaerts",
+    "sitzplatz_gang": "Sitzplatz Gang",
+    "sitzplatz_fenster": "Sitzplatz Fenster",
+    "tisch": "Tisch",
+    "wc": "WC",
+    "kueche": "Kueche",
+    "fahrer": "Fahrer",
+    "reiseleiter": "Reiseleiter",
+    "einstieg": "Einstieg",
+    "holm": "Holm",
+    "aufgang": "Aufgang",
+    "abgang": "Abgang"
+  },
+  "selectType": "Typ auswaehlen",
+  "reassignment": {
+    "title": "Sitzplan-Umbesetzung",
+    "subtitle": "Passagiere Sitzen zuweisen und umsetzen",
+    "assignSeat": "Sitzplatz zuweisen",
+    "freeSeat": "Platz freigeben",
+    "movePassenger": "Passagier verschieben",
+    "unassigned": "Nicht zugewiesen",
+    "undo": "Rueckgaengig",
+    "noSeatMap": "Kein Sitzplan hinterlegt",
+    "noSeatMapHint": "Bitte weisen Sie diesem Transport einen Sitzplan zu",
+    "clickSeatToAssign": "Klicken Sie auf einen freien Sitz, um einen Passagier zuzuweisen",
+    "clickSeatToFree": "Klicken Sie auf einen besetzten Sitz, um ihn freizugeben",
+    "clickSeatToMove": "Klicken Sie auf einen freien Sitz, um den Passagier zu verschieben",
+    "selectPassenger": "Passagier auswaehlen",
+    "passengerSelected": "Passagier ausgewaehlt",
+    "operationHistory": "Verlauf",
+    "noOperations": "Keine Operationen",
+    "free": "Frei",
+    "occupied": "Besetzt",
+    "blocked": "Gesperrt",
+    "confirmFree": "Moechten Sie diesen Sitz wirklich freigeben?",
+    "confirmMove": "Moechten Sie diesen Passagier wirklich verschieben?",
+    "success": {
+      "assigned": "Passagier erfolgreich zugewiesen",
+      "freed": "Sitz erfolgreich freigegeben",
+      "moved": "Passagier erfolgreich verschoben",
+      "undone": "Operation erfolgreich rueckgaengig gemacht"
+    },
+    "error": {
+      "assignFailed": "Zuweisung fehlgeschlagen",
+      "freeFailed": "Freigabe fehlgeschlagen",
+      "moveFailed": "Verschieben fehlgeschlagen",
+      "undoFailed": "Rueckgaengig machen fehlgeschlagen"
+    },
+    "templates": {
+      "hummel28": "28+1 Hummel Bus",
+      "novermann44": "44+1 Noevermann Bus"
+    }
+  },
+  "seat": {
+    "block": "Sperren",
+    "unblock": "Entsperren",
+    "blocked": "Gesperrt",
+    "blockReason": "Sperrgrund",
+    "available": "Verfuegbar",
+    "assignPlan": "Sitzplan zuweisen",
+    "planNote": "Sitzplan-Notiz",
+    "tourGuide": "Reiseleiter",
+    "legendTourGuide": "Reiseleiter-Sitz"
+  },
+  "preference": {
+    "title": "Passagierpraeferenzen",
+    "position": "Position",
+    "companion": "Begleitung",
+    "accessibility": "Barrierefreiheit",
+    "other": "Sonstiges",
+    "fulfilled": "Erfuellt",
+    "pending": "Ausstehend",
+    "name": "Name",
+    "seatNumber": "Sitz",
+    "type": "Typ",
+    "text": "Praeferenz",
+    "status": "Status",
+    "noPreferences": "Keine Praeferenzen vorhanden"
+  },
+  "passenger": {
+    "details": "Passagierdetails",
+    "bookingRef": "Buchungsreferenz",
+    "accommodation": "Unterbringung",
+    "contact": "Kontaktdaten",
+    "seatHistory": "Sitzplatz-Historie",
+    "selectSeat": "Waehlen Sie einen besetzten Sitz aus, um Details anzuzeigen",
+    "assignedOn": "Zugewiesen am",
+    "email": "E-Mail",
+    "phone": "Telefon"
+  },
+  "bulk": {
+    "smartAssign": "Alle automatisch zuweisen",
+    "preview": "Massenzuweisungs-Vorschau",
+    "suggestedSeat": "Vorgeschlagener Sitz",
+    "reason": "Begruendung",
+    "confidence": "Zuversicht",
+    "conflicts": "Konflikte",
+    "applyAll": "Alle anwenden",
+    "high": "Hoch",
+    "medium": "Mittel",
+    "low": "Niedrig",
+    "companionReason": "Begleitung: neben {{name}} in {{seat}}",
+    "positionReason": "Position: {{preference}}",
+    "noUnassigned": "Alle Passagiere sind zugewiesen",
+    "assignmentCount": "{{count}} Passagiere zuzuweisen",
+    "conflictWarning": "{{count}} Konflikt(e) erkannt"
+  }
+}
