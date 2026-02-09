@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Calendar, DollarSign, Save, Plus } from 'lucide-react';
-import type { Trip, TripTag, TripDeparture } from '../../types';
+import { Calendar, Save, Plus, Loader2 } from 'lucide-react';
+import type { Trip, TripTag } from '../../types';
 import { supabase } from '../../lib/supabase';
 import { ClassificationTagsSection } from './ClassificationTagsSection';
 import { DepartureStatusSection } from './DepartureStatusSection';
@@ -17,9 +17,9 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   const { t } = useTranslation('trips');
   const { createTripDeparture } = useTrips();
 
-  const [editMode, setEditMode] = useState(false);
   const [tripTags, setTripTags] = useState<TripTag[]>([]);
   const [selectedDepartureId, setSelectedDepartureId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
     text: trip.text,
     code: trip.code,
@@ -29,6 +29,18 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
     status_hin: trip.status_hin,
     status_rueck: trip.status_rueck,
   });
+
+  useEffect(() => {
+    setFormData({
+      text: trip.text,
+      code: trip.code,
+      termin: trip.termin,
+      bis: trip.bis,
+      abpreis: trip.abpreis,
+      status_hin: trip.status_hin,
+      status_rueck: trip.status_rueck,
+    });
+  }, [trip.id]);
 
   useEffect(() => {
     fetchTripTags();
@@ -57,8 +69,12 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   };
 
   const handleSave = async () => {
-    await onUpdate(trip.id, formData);
-    setEditMode(false);
+    setSaving(true);
+    try {
+      await onUpdate(trip.id, formData);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleAddDeparture = async () => {
@@ -77,169 +93,120 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
   const currentDeparture = departures.find(d => d.id === selectedDepartureId) || departures[0];
 
   return (
-    <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-      <div className="card">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-teal-400" />
+    <div className="p-4 sm:p-6 space-y-6">
+      <div className="card p-5 sm:p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-teal-600" />
             {t('tripData.title')}
           </h3>
-          {!editMode ? (
-            <button
-              onClick={() => setEditMode(true)}
-              className="btn-ghost text-sm"
-            >
-              {t('actions.edit')}
-            </button>
-          ) : (
-            <div className="flex gap-2">
-              <button
-                onClick={() => setEditMode(false)}
-                className="btn-ghost text-sm"
-              >
-                {t('actions.cancel')}
-              </button>
-              <button
-                onClick={handleSave}
-                className="btn-primary text-sm flex items-center gap-1"
-              >
-                <Save className="w-4 h-4" />
-                {t('actions.save')}
-              </button>
-            </div>
-          )}
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="btn btn-primary text-sm"
+          >
+            {saving ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Save className="w-4 h-4" />
+            )}
+            {t('actions.save')}
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.tripName')}
             </label>
-            {editMode ? (
-              <input
-                type="text"
-                value={formData.text}
-                onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-              />
-            ) : (
-              <p className="text-white text-lg font-medium">{trip.text}</p>
-            )}
+            <input
+              type="text"
+              value={formData.text}
+              onChange={(e) => setFormData({ ...formData, text: e.target.value })}
+              className="input"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.tripCode')}
             </label>
-            {editMode ? (
-              <input
-                type="text"
-                value={formData.code}
-                onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-              />
-            ) : (
-              <p className="text-white font-mono bg-gray-700 px-3 py-2 rounded inline-block">{trip.code}</p>
-            )}
+            <input
+              type="text"
+              value={formData.code}
+              onChange={(e) => setFormData({ ...formData, code: e.target.value })}
+              className="input"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.basePrice')}
             </label>
-            {editMode ? (
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">€</span>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={formData.abpreis}
-                  onChange={(e) => setFormData({ ...formData, abpreis: Number(e.target.value) })}
-                  className="w-full pl-8 pr-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-                />
-              </div>
-            ) : (
-              <p className="text-white flex items-center gap-1 text-lg font-semibold">
-                <DollarSign className="w-5 h-5 text-teal-400" />
-                {trip.abpreis.toFixed(2)}
-              </p>
-            )}
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">EUR</span>
+              <input
+                type="number"
+                step="0.01"
+                value={formData.abpreis}
+                onChange={(e) => setFormData({ ...formData, abpreis: Number(e.target.value) })}
+                className="input pl-12"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.startDate')}
             </label>
-            {editMode ? (
-              <input
-                type="date"
-                value={formData.termin}
-                onChange={(e) => setFormData({ ...formData, termin: e.target.value })}
-                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-              />
-            ) : (
-              <p className="text-white">{new Date(trip.termin).toLocaleDateString()}</p>
-            )}
+            <input
+              type="date"
+              value={formData.termin}
+              onChange={(e) => setFormData({ ...formData, termin: e.target.value })}
+              className="input"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.endDate')}
             </label>
-            {editMode ? (
-              <input
-                type="date"
-                value={formData.bis}
-                onChange={(e) => setFormData({ ...formData, bis: e.target.value })}
-                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-              />
-            ) : (
-              <p className="text-white">{new Date(trip.bis).toLocaleDateString()}</p>
-            )}
+            <input
+              type="date"
+              value={formData.bis}
+              onChange={(e) => setFormData({ ...formData, bis: e.target.value })}
+              className="input"
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.statusOutbound')}
             </label>
-            {editMode ? (
-              <select
-                value={formData.status_hin}
-                onChange={(e) => setFormData({ ...formData, status_hin: e.target.value })}
-                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-              >
-                <option value="Frei">{t('status.frei')}</option>
-                <option value="Offen">{t('status.offen')}</option>
-                <option value="Geschlossen">{t('status.geschlossen')}</option>
-                <option value="Bestätigt">{t('status.bestaetigt')}</option>
-              </select>
-            ) : (
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-500/20 text-teal-400 border border-teal-500/30">
-                {trip.status_hin}
-              </span>
-            )}
+            <select
+              value={formData.status_hin}
+              onChange={(e) => setFormData({ ...formData, status_hin: e.target.value })}
+              className="select w-full"
+            >
+              <option value="Frei">{t('tripData.status.frei')}</option>
+              <option value="W">{t('tripData.status.warteliste')}</option>
+              <option value="Anfrage">{t('tripData.status.anfrage')}</option>
+            </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('tripData.statusReturn')}
             </label>
-            {editMode ? (
-              <select
-                value={formData.status_rueck}
-                onChange={(e) => setFormData({ ...formData, status_rueck: e.target.value })}
-                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
-              >
-                <option value="Frei">{t('status.frei')}</option>
-                <option value="Offen">{t('status.offen')}</option>
-                <option value="Geschlossen">{t('status.geschlossen')}</option>
-                <option value="Bestätigt">{t('status.bestaetigt')}</option>
-              </select>
-            ) : (
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-500/20 text-teal-400 border border-teal-500/30">
-                {trip.status_rueck}
-              </span>
-            )}
+            <select
+              value={formData.status_rueck}
+              onChange={(e) => setFormData({ ...formData, status_rueck: e.target.value })}
+              className="select w-full"
+            >
+              <option value="Frei">{t('tripData.status.frei')}</option>
+              <option value="W">{t('tripData.status.warteliste')}</option>
+              <option value="Anfrage">{t('tripData.status.anfrage')}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -250,15 +217,15 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
         onTagsUpdate={fetchTripTags}
       />
 
-      <div className="card">
+      <div className="card p-5 sm:p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-teal-400" />
+          <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-teal-600" />
             {t('tripData.departures')}
           </h3>
           <button
             onClick={handleAddDeparture}
-            className="btn-ghost text-sm flex items-center gap-1"
+            className="btn btn-secondary text-sm"
           >
             <Plus className="w-4 h-4" />
             {t('tripData.addDeparture')}
@@ -266,16 +233,16 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
         </div>
 
         {departures.length === 0 ? (
-          <p className="text-gray-400 text-sm">{t('tripData.noDepartures')}</p>
+          <p className="text-slate-500 text-sm">{t('tripData.noDepartures')}</p>
         ) : (
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-slate-300 mb-2">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               {t('actions.select')} {t('tripData.departures')}
             </label>
             <select
               value={selectedDepartureId || ''}
               onChange={(e) => setSelectedDepartureId(e.target.value)}
-              className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+              className="select w-full"
             >
               {departures.map((departure) => (
                 <option key={departure.id} value={departure.id}>

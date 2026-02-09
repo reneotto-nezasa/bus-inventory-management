@@ -37,19 +37,19 @@ export function TripEditingMask({ trip, onUpdate }: TripEditingMaskProps) {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="border-b border-gray-700 overflow-x-auto">
-        <div className="flex space-x-1 px-4 sm:px-6 min-w-min">
+    <div className="flex flex-col h-full bg-slate-50">
+      <div className="bg-white border-b border-slate-200 overflow-x-auto">
+        <div className="flex space-x-1 px-4 sm:px-6 min-w-min max-w-6xl mx-auto">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
               className={`
-                px-4 sm:px-6 py-3 font-medium text-sm border-b-2 transition-colors whitespace-nowrap
+                px-4 sm:px-6 py-3.5 font-medium text-sm border-b-2 transition-colors whitespace-nowrap
                 ${
                   activeTab === tab.key
-                    ? 'border-teal-500 text-teal-400'
-                    : 'border-transparent text-gray-400 hover:text-gray-300'
+                    ? 'border-teal-600 text-teal-700'
+                    : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
                 }
               `}
             >
@@ -60,24 +60,26 @@ export function TripEditingMask({ trip, onUpdate }: TripEditingMaskProps) {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        {activeTab === 'tripData' && (
-          <TripDataTab trip={trip} onUpdate={onUpdate} />
-        )}
-        {activeTab === 'transport' && (
-          <TransportTab trip={trip} onSelectTransport={handleTransportSelect} />
-        )}
-        {activeTab === 'boardingPoints' && (
-          <BoardingPointsTab trip={trip} selectedTransportId={selectedTransportId} />
-        )}
-        {activeTab === 'groupAssignment' && (
-          <GroupAssignmentTab trip={trip} />
-        )}
-        {activeTab === 'accommodation' && (
-          <AccommodationTab trip={trip} />
-        )}
-        {activeTab === 'extras' && (
-          <ExtrasTab trip={trip} />
-        )}
+        <div className="max-w-6xl mx-auto">
+          {activeTab === 'tripData' && (
+            <TripDataTab trip={trip} onUpdate={onUpdate} />
+          )}
+          {activeTab === 'transport' && (
+            <TransportTab trip={trip} onSelectTransport={handleTransportSelect} />
+          )}
+          {activeTab === 'boardingPoints' && (
+            <BoardingPointsTab trip={trip} selectedTransportId={selectedTransportId} />
+          )}
+          {activeTab === 'groupAssignment' && (
+            <GroupAssignmentTab trip={trip} />
+          )}
+          {activeTab === 'accommodation' && (
+            <AccommodationTab trip={trip} />
+          )}
+          {activeTab === 'extras' && (
+            <ExtrasTab trip={trip} />
+          )}
+        </div>
       </div>
     </div>
   );

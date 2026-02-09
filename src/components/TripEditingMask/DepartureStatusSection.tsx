@@ -11,14 +11,15 @@ interface DepartureStatusSectionProps {
 
 export function DepartureStatusSection({ departure, onUpdate }: DepartureStatusSectionProps) {
   const { t } = useTranslation('trips');
-  const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     status_hin: departure.status_hin || 'Frei',
     status_rueck: departure.status_rueck || 'Frei',
     buchung_bis_datum: departure.buchung_bis_datum || '',
   });
+  const [saving, setSaving] = useState(false);
 
   const handleSave = async () => {
+    setSaving(true);
     try {
       await supabase
         .from('trip_departures')
@@ -29,135 +30,72 @@ export function DepartureStatusSection({ departure, onUpdate }: DepartureStatusS
         })
         .eq('id', departure.id);
       onUpdate();
-      setEditMode(false);
     } catch (error) {
       console.error('Error updating departure status:', error);
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Frei':
-        return 'bg-green-900/30 border-green-700 text-green-300';
-      case 'W':
-        return 'bg-yellow-900/30 border-yellow-700 text-yellow-300';
-      case 'Anfrage':
-        return 'bg-orange-900/30 border-orange-700 text-orange-300';
-      default:
-        return 'bg-gray-700 border-gray-600 text-gray-300';
-    }
-  };
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'Frei':
-        return t('tripData.status.frei');
-      case 'W':
-        return t('tripData.status.warteliste');
-      case 'Anfrage':
-        return t('tripData.status.anfrage');
-      default:
-        return status;
+    } finally {
+      setSaving(false);
     }
   };
 
   return (
-    <div className="card">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 text-teal-400" />
-          <h3 className="text-lg font-semibold text-white">
-            {t('tripData.departureStatus')}
-          </h3>
-        </div>
-        {!editMode ? (
-          <button
-            onClick={() => setEditMode(true)}
-            className="btn-ghost text-sm"
-          >
-            {t('actions.edit')}
-          </button>
-        ) : (
-          <div className="flex gap-2">
-            <button
-              onClick={() => setEditMode(false)}
-              className="btn-ghost text-sm"
-            >
-              {t('actions.cancel')}
-            </button>
-            <button
-              onClick={handleSave}
-              className="btn-primary text-sm flex items-center gap-1"
-            >
-              <Save className="w-4 h-4" />
-              {t('actions.save')}
-            </button>
-          </div>
-        )}
+    <div className="card p-5 sm:p-6">
+      <div className="flex items-center justify-between mb-5">
+        <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
+          <AlertCircle className="w-5 h-5 text-teal-600" />
+          {t('tripData.departureStatus')}
+        </h3>
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="btn btn-primary text-sm"
+        >
+          <Save className="w-4 h-4" />
+          {t('actions.save')}
+        </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">
             {t('tripData.statusOutbound')}
           </label>
-          {editMode ? (
-            <select
-              value={formData.status_hin}
-              onChange={(e) => setFormData({ ...formData, status_hin: e.target.value })}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
-            >
-              <option value="Frei">{t('tripData.status.frei')}</option>
-              <option value="W">{t('tripData.status.warteliste')}</option>
-              <option value="Anfrage">{t('tripData.status.anfrage')}</option>
-            </select>
-          ) : (
-            <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(departure.status_hin)}`}>
-              {getStatusLabel(departure.status_hin)}
-            </span>
-          )}
+          <select
+            value={formData.status_hin}
+            onChange={(e) => setFormData({ ...formData, status_hin: e.target.value })}
+            className="select w-full"
+          >
+            <option value="Frei">{t('tripData.status.frei')}</option>
+            <option value="W">{t('tripData.status.warteliste')}</option>
+            <option value="Anfrage">{t('tripData.status.anfrage')}</option>
+          </select>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-400 mb-2">
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">
             {t('tripData.statusReturn')}
           </label>
-          {editMode ? (
-            <select
-              value={formData.status_rueck}
-              onChange={(e) => setFormData({ ...formData, status_rueck: e.target.value })}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
-            >
-              <option value="Frei">{t('tripData.status.frei')}</option>
-              <option value="W">{t('tripData.status.warteliste')}</option>
-              <option value="Anfrage">{t('tripData.status.anfrage')}</option>
-            </select>
-          ) : (
-            <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(departure.status_rueck)}`}>
-              {getStatusLabel(departure.status_rueck)}
-            </span>
-          )}
+          <select
+            value={formData.status_rueck}
+            onChange={(e) => setFormData({ ...formData, status_rueck: e.target.value })}
+            className="select w-full"
+          >
+            <option value="Frei">{t('tripData.status.frei')}</option>
+            <option value="W">{t('tripData.status.warteliste')}</option>
+            <option value="Anfrage">{t('tripData.status.anfrage')}</option>
+          </select>
         </div>
 
-        <div className="col-span-2">
-          <label className="block text-sm font-medium text-gray-400 mb-2">
+        <div className="sm:col-span-2">
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">
             <Calendar className="w-4 h-4 inline mr-1" />
             {t('tripData.bookingDeadline')}
           </label>
-          {editMode ? (
-            <input
-              type="date"
-              value={formData.buchung_bis_datum}
-              onChange={(e) => setFormData({ ...formData, buchung_bis_datum: e.target.value })}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
-            />
-          ) : (
-            <p className="text-white">
-              {departure.buchung_bis_datum
-                ? new Date(departure.buchung_bis_datum).toLocaleDateString()
-                : t('tripData.noDeadline')}
-            </p>
-          )}
+          <input
+            type="date"
+            value={formData.buchung_bis_datum}
+            onChange={(e) => setFormData({ ...formData, buchung_bis_datum: e.target.value })}
+            className="input"
+          />
         </div>
       </div>
     </div>

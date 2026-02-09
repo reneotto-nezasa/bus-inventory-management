@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bus, Car, Plus, MapPin, Calendar, Armchair, FileText, Users, Loader2 } from 'lucide-react';
+import { Bus, Car, Plus, MapPin, Calendar, Armchair, FileText, Users, Loader2, DollarSign } from 'lucide-react';
 import type { Trip, BusTransport } from '../../types';
 import { useTrips } from '../../hooks';
 import { useSeatMaps } from '../../hooks';
@@ -56,10 +56,10 @@ export function TransportTab({ trip, onSelectTransport }: TransportTabProps) {
 
   return (
     <div className="p-6 space-y-6">
-      <div className="card">
+      <div className="card p-5 sm:p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-            <Bus className="w-5 h-5 text-teal-400" />
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <Bus className="w-5 h-5 text-teal-600" />
             {t('transports.outbound')}
           </h3>
           <button
@@ -73,7 +73,7 @@ export function TransportTab({ trip, onSelectTransport }: TransportTabProps) {
 
         <div className="space-y-3">
           {rootOutboundTransports.length === 0 ? (
-            <p className="text-gray-400 text-sm">{t('transports.empty')}</p>
+            <p className="text-slate-500 text-sm">{t('transports.empty')}</p>
           ) : (
             rootOutboundTransports.map((transport) => {
               const continuationLegs = getContinuationLegs(transport.id);
@@ -104,10 +104,10 @@ export function TransportTab({ trip, onSelectTransport }: TransportTabProps) {
         </div>
       </div>
 
-      <div className="card">
+      <div className="card p-5 sm:p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-            <Bus className="w-5 h-5 text-teal-400" />
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <Bus className="w-5 h-5 text-teal-600" />
             {t('transports.return')}
           </h3>
           <button
@@ -121,7 +121,7 @@ export function TransportTab({ trip, onSelectTransport }: TransportTabProps) {
 
         <div className="space-y-3">
           {returnTransports.length === 0 ? (
-            <p className="text-gray-400 text-sm">{t('transports.empty')}</p>
+            <p className="text-slate-500 text-sm">{t('transports.empty')}</p>
           ) : (
             returnTransports.map((transport) => (
               <TransportCard
@@ -229,20 +229,20 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
   const boardingPointsCount = transport.boarding_point_assignments?.length || 0;
 
   return (
-    <div className="bg-gray-700 rounded-lg p-4">
+    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <TypeIcon className="w-6 h-6 text-teal-400" />
+          <TypeIcon className="w-6 h-6 text-teal-600" />
           <div>
             {editMode ? (
               <input
                 type="text"
                 value={formData.text}
                 onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-                className="px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white"
+                className="input px-2 py-1 text-sm"
               />
             ) : (
-              <h4 className="font-semibold text-white">{transport.text}</h4>
+              <h4 className="font-semibold text-slate-900">{transport.text}</h4>
             )}
             <div className="flex items-center gap-2 mt-1">
               <span className="badge-info text-xs">{transport.richtung === 'HIN' ? t('transports.outbound') : t('transports.return')}</span>
@@ -250,18 +250,18 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
                 {transport.unterart === 'PKW' ? t('transports.car') : t('transports.bus')}
               </span>
               {isContinuationLeg && (
-                <span className="px-2 py-0.5 bg-teal-900/30 border border-teal-700 rounded text-teal-300 text-xs">
+                <span className="px-2 py-0.5 bg-teal-50 border border-teal-200 rounded text-teal-700 text-xs">
                   {t('transports.continuationLeg')}
                 </span>
               )}
               <span className="badge-neutral text-xs">{transport.status}</span>
               {transport.fruehbucher && (
-                <span className="px-2 py-0.5 bg-green-900/30 border border-green-700 rounded text-green-300 text-xs">
+                <span className="px-2 py-0.5 bg-emerald-50 border border-emerald-200 rounded text-emerald-700 text-xs">
                   {t('transports.earlyBird')}
                 </span>
               )}
               {transport.altersermaessigung && (
-                <span className="px-2 py-0.5 bg-blue-900/30 border border-blue-700 rounded text-blue-300 text-xs">
+                <span className="px-2 py-0.5 bg-blue-50 border border-blue-200 rounded text-blue-700 text-xs">
                   {t('transports.ageDiscount')}
                 </span>
               )}
@@ -272,7 +272,7 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
           {!editMode ? (
             <button
               onClick={() => setEditMode(true)}
-              className="text-gray-400 hover:text-white text-sm"
+              className="text-slate-500 hover:text-slate-900 text-sm"
             >
               {t('actions.edit')}
             </button>
@@ -280,13 +280,13 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
             <>
               <button
                 onClick={() => setEditMode(false)}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-slate-500 hover:text-slate-900 text-sm"
               >
                 {t('actions.cancel')}
               </button>
               <button
                 onClick={handleSave}
-                className="text-teal-400 hover:text-teal-300 text-sm"
+                className="text-teal-600 hover:text-teal-700 text-sm"
               >
                 {t('actions.save')}
               </button>
@@ -298,7 +298,7 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
       {editMode && (
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div>
-            <label className="block text-xs text-gray-400 mb-1">
+            <label className="block text-xs text-slate-500 mb-1">
               {t('transports.type')}
             </label>
             <select
@@ -308,39 +308,39 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
                 setFormData({ ...formData, unterart: newUnterart });
                 validatePrice(newUnterart, formData.preis);
               }}
-              className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+              className="select w-full px-2 py-1 text-sm"
             >
               <option value="BUS">{t('transports.bus')}</option>
               <option value="PKW">{t('transports.car')}</option>
             </select>
           </div>
           <div>
-            <label className="block text-xs text-gray-400 mb-1">
+            <label className="block text-xs text-slate-500 mb-1">
               {t('transports.date')}
             </label>
             <input
               type="date"
               value={formData.termin}
               onChange={(e) => setFormData({ ...formData, termin: e.target.value })}
-              className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+              className="input w-full px-2 py-1 text-sm"
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-400 mb-1">
+            <label className="block text-xs text-slate-500 mb-1">
               {t('transports.price')}
               {formData.unterart === 'PKW' && (
-                <span className="text-xs text-teal-400 ml-1">({t('transports.pkwPriceHint')})</span>
+                <span className="text-xs text-teal-600 ml-1">({t('transports.pkwPriceHint')})</span>
               )}
             </label>
             <div className="relative">
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">€</span>
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-slate-500 text-xs">€</span>
               <input
                 type="number"
                 step="0.01"
                 value={formData.preis}
                 onChange={(e) => handlePriceChange(Number(e.target.value))}
-                className={`w-full pl-6 pr-2 py-1 bg-gray-600 border rounded text-white text-sm ${
-                  priceError ? 'border-red-500' : 'border-gray-500'
+                className={`input w-full pl-6 pr-2 py-1 text-sm ${
+                  priceError ? 'border-red-500' : ''
                 } ${formData.unterart === 'PKW' && formData.preis < 0 ? 'text-red-400' : ''}`}
               />
             </div>
@@ -349,13 +349,13 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
             )}
           </div>
           <div>
-            <label className="block text-xs text-gray-400 mb-1">
+            <label className="block text-xs text-slate-500 mb-1">
               {t('tripData.statusOutbound')}
             </label>
             <select
               value={formData.status}
               onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-              className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+              className="select w-full px-2 py-1 text-sm"
             >
               <option value="Frei">{t('status.frei')}</option>
               <option value="Offen">{t('status.offen')}</option>
@@ -364,39 +364,39 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
             </select>
           </div>
           <div className="col-span-2">
-            <label className="block text-xs text-gray-400 mb-2">
+            <label className="block text-xs text-slate-500 mb-2">
               {t('transports.discounts')}
             </label>
             <div className="flex gap-4">
-              <label className="flex items-center gap-2 text-sm text-white cursor-pointer">
+              <label className="flex items-center gap-2 text-sm text-slate-900 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.fruehbucher}
                   onChange={(e) => setFormData({ ...formData, fruehbucher: e.target.checked })}
-                  className="w-4 h-4 rounded border-gray-500 bg-gray-600 text-teal-500 focus:ring-2 focus:ring-teal-500"
+                  className="w-4 h-4 rounded border-slate-300 bg-white text-teal-500 focus:ring-2 focus:ring-teal-500"
                 />
                 <span>{t('transports.earlyBird')}</span>
               </label>
-              <label className="flex items-center gap-2 text-sm text-white cursor-pointer">
+              <label className="flex items-center gap-2 text-sm text-slate-900 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.altersermaessigung}
                   onChange={(e) => setFormData({ ...formData, altersermaessigung: e.target.checked })}
-                  className="w-4 h-4 rounded border-gray-500 bg-gray-600 text-teal-500 focus:ring-2 focus:ring-teal-500"
+                  className="w-4 h-4 rounded border-slate-300 bg-white text-teal-500 focus:ring-2 focus:ring-teal-500"
                 />
                 <span>{t('transports.ageDiscount')}</span>
               </label>
             </div>
           </div>
           <div className="col-span-2">
-            <label className="block text-xs text-gray-400 mb-1">
+            <label className="block text-xs text-slate-500 mb-1">
               {t('transports.internalNotes')}
             </label>
             <textarea
               value={formData.hinweis_stamm}
               onChange={(e) => setFormData({ ...formData, hinweis_stamm: e.target.value })}
               rows={2}
-              className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+              className="input w-full px-2 py-1 text-sm"
             />
           </div>
         </div>
@@ -404,17 +404,17 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
 
       <div className="grid grid-cols-2 gap-4 text-sm">
         <div>
-          <div className="flex items-center gap-2 text-gray-400 mb-1">
+          <div className="flex items-center gap-2 text-slate-500 mb-1">
             <Calendar className="w-4 h-4" />
             {t('transports.date')}
           </div>
-          <p className="text-white">
+          <p className="text-slate-900">
             {new Date(transport.termin).toLocaleDateString()} - {new Date(transport.bis).toLocaleDateString()}
           </p>
         </div>
 
         <div>
-          <div className="flex items-center gap-2 text-gray-400 mb-1">
+          <div className="flex items-center gap-2 text-slate-500 mb-1">
             <DollarSign className="w-4 h-4" />
             {t('transports.price')}
           </div>
@@ -423,28 +423,28 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
               ? 'text-red-400'
               : transport.preis < 0
                 ? 'text-red-400'
-                : 'text-white'
+                : 'text-slate-900'
           }`}>
             {transport.preis < 0 ? '-' : ''}€{Math.abs(transport.preis).toFixed(2)}
             {transport.unterart === 'PKW' && transport.preis < 0 && (
-              <span className="text-xs text-teal-400 ml-2">({t('transports.discount')})</span>
+              <span className="text-xs text-teal-600 ml-2">({t('transports.discount')})</span>
             )}
           </p>
         </div>
 
         {transport.unterart !== 'PKW' && (
           <div>
-            <div className="flex items-center gap-2 text-gray-400 mb-1">
+            <div className="flex items-center gap-2 text-slate-500 mb-1">
               <MapPin className="w-4 h-4" />
               {t('transports.boardingPoints')}
             </div>
             <div className="flex items-center gap-2">
-              <p className="text-white">
+              <p className="text-slate-900">
                 {boardingPointsCount} {t('transports.assigned')}
               </p>
               <button
                 onClick={() => onSelectTransport(transport.id)}
-                className="text-teal-400 hover:text-teal-300 text-xs"
+                className="text-teal-600 hover:text-teal-700 text-xs"
               >
                 {t('actions.edit')}
               </button>
@@ -454,14 +454,14 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
 
         {transport.unterart !== 'PKW' && (
           <div className="col-span-2">
-            <label className="block text-gray-400 mb-1">
+            <label className="block text-slate-500 mb-1">
               {t('transports.seatMap')}
             </label>
             <div className="flex gap-2 mb-2">
               <select
                 value={transport.seat_map_id || ''}
                 onChange={(e) => linkSeatMapToTransport(transport.id, e.target.value || null)}
-                className="flex-1 px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+                className="select flex-1 px-3 py-2 text-sm"
               >
                 <option value="">{t('transports.noSeatMap')}</option>
                 {seatMaps.map((sm) => (
@@ -481,7 +481,7 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
               ) : (
                 <button
                   disabled
-                  className="px-4 py-2 bg-gray-600 text-gray-400 rounded text-sm flex items-center gap-2 whitespace-nowrap cursor-not-allowed"
+                  className="px-4 py-2 bg-slate-100 text-slate-400 rounded text-sm flex items-center gap-2 whitespace-nowrap cursor-not-allowed"
                   title={t('seatmaps:reassignment.noSeatMap')}
                 >
                   <Armchair className="w-4 h-4" />
@@ -491,8 +491,8 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
             </div>
             {transport.seat_map_id && (
               <div className="space-y-2">
-                <div className="flex items-center gap-2 p-2 bg-gray-600 rounded text-xs text-gray-300">
-                  <Armchair className="w-3 h-3 text-teal-400" />
+                <div className="flex items-center gap-2 p-2 bg-slate-100 rounded text-xs text-slate-600">
+                  <Armchair className="w-3 h-3 text-teal-600" />
                   <span>
                     {seatMaps.find((sm) => sm.id === transport.seat_map_id)?.bezeichnung}
                   </span>
@@ -503,11 +503,11 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
                     value={formData.seat_plan_note}
                     onChange={(e) => setFormData({ ...formData, seat_plan_note: e.target.value })}
                     placeholder={t('seatmaps:seat.planNote')}
-                    className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm"
+                    className="input w-full px-2 py-1 text-sm"
                   />
                 ) : (
                   transport.seat_plan_note && (
-                    <p className="text-xs text-gray-400 italic">{transport.seat_plan_note}</p>
+                    <p className="text-xs text-slate-500 italic">{transport.seat_plan_note}</p>
                   )
                 )}
               </div>
@@ -517,13 +517,13 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
       </div>
 
       {(transport.seat_map_id || boardingPointsCount > 0 || onAddContinuationLeg) && (
-        <div className="mt-4 pt-4 border-t border-gray-600">
+        <div className="mt-4 pt-4 border-t border-slate-200">
           <div className="flex items-center gap-3">
             {transport.seat_map_id && (
               <button
                 onClick={handleGenerateSeatPlan}
                 disabled={generatingSeatPlan}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {generatingSeatPlan ? (
                   <>
@@ -543,7 +543,7 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
               <button
                 onClick={handleGenerateBoardingList}
                 disabled={generatingBoardingList}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {generatingBoardingList ? (
                   <>
@@ -573,8 +573,8 @@ function TransportCard({ transport, seatMaps, onSelectTransport, onOpenReassignm
       )}
 
       {transport.hinweis_stamm && !editMode && (
-        <div className="mt-3 p-2 bg-gray-600 rounded">
-          <p className="text-xs text-gray-300">{transport.hinweis_stamm}</p>
+        <div className="mt-3 p-2 bg-slate-100 rounded">
+          <p className="text-xs text-slate-600">{transport.hinweis_stamm}</p>
         </div>
       )}
     </div>

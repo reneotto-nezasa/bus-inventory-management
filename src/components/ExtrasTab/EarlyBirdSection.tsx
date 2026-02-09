@@ -26,7 +26,7 @@ export function EarlyBirdSection({ discounts, onEdit, onDelete }: EarlyBirdSecti
 
   if (discounts.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-400">
+      <div className="text-center py-8 text-slate-500">
         <Calendar className="w-12 h-12 mx-auto mb-3 opacity-50" />
         <p className="text-sm">{t('empty.earlyBird')}</p>
       </div>
@@ -37,49 +37,49 @@ export function EarlyBirdSection({ discounts, onEdit, onDelete }: EarlyBirdSecti
     <div className="card overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-700">
+          <thead className="bg-slate-50">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
                 {t('fields.bookingDeadline')}
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
                 {t('fields.travelDateFrom')}
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
                 {t('fields.travelDateTo')}
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
                 {t('fields.discountValue')}
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
                 {t('fields.description')}
               </th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-4 py-3 text-right text-xs font-medium text-slate-600 uppercase tracking-wider">
                 {t('actions.edit')}
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody className="divide-y divide-slate-200">
             {discounts.map((discount) => (
-              <tr key={discount.id} className="hover:bg-gray-700 transition-colors">
+              <tr key={discount.id} className="hover:bg-slate-50 transition-colors">
                 <td className="px-4 py-3">
-                  <div className="flex items-center gap-2 text-sm text-white">
-                    <Calendar className="w-4 h-4 text-teal-400" />
+                  <div className="flex items-center gap-2 text-sm text-slate-900">
+                    <Calendar className="w-4 h-4 text-teal-600" />
                     {new Date(discount.booking_deadline).toLocaleDateString()}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-sm text-gray-300">
+                <td className="px-4 py-3 text-sm text-slate-600">
                   {discount.travel_date_from
                     ? new Date(discount.travel_date_from).toLocaleDateString()
                     : '-'}
                 </td>
-                <td className="px-4 py-3 text-sm text-gray-300">
+                <td className="px-4 py-3 text-sm text-slate-600">
                   {discount.travel_date_to
                     ? new Date(discount.travel_date_to).toLocaleDateString()
                     : '-'}
                 </td>
                 <td className="px-4 py-3">
-                  <div className="flex items-center gap-1 text-sm font-semibold text-teal-400">
+                  <div className="flex items-center gap-1 text-sm font-semibold text-teal-600">
                     {discount.discount_type === 'percent' ? (
                       <>
                         <Percent className="w-4 h-4" />
@@ -93,20 +93,20 @@ export function EarlyBirdSection({ discounts, onEdit, onDelete }: EarlyBirdSecti
                     )}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-sm text-gray-300">
+                <td className="px-4 py-3 text-sm text-slate-600">
                   {discount.description || '-'}
                 </td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex items-center justify-end gap-2">
                     <button
                       onClick={() => onEdit(discount)}
-                      className="p-1.5 hover:bg-gray-600 rounded text-gray-300 hover:text-white"
+                      className="p-1.5 hover:bg-slate-100 rounded text-slate-600 hover:text-slate-900"
                     >
                       <Edit className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(discount.id)}
-                      className="p-1.5 hover:bg-red-500 rounded text-gray-300 hover:text-white"
+                      className="p-1.5 hover:bg-red-50 rounded text-slate-600 hover:text-slate-900"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

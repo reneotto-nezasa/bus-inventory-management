@@ -31,7 +31,7 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
     return (
       <div className="p-6">
         <div className="card">
-          <p className="text-gray-400">{t('tripData.noDepartures')}</p>
+          <p className="text-slate-500">{t('tripData.noDepartures')}</p>
         </div>
       </div>
     );
@@ -41,8 +41,8 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
     <div className="p-6 space-y-6">
       <div className="card">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-            <Users className="w-5 h-5 text-teal-400" />
+          <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
+            <Users className="w-5 h-5 text-teal-600" />
             {t('groups.title')}
           </h3>
           <button
@@ -55,8 +55,8 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
         </div>
 
         {showAddGroup && (
-          <div className="mb-4 p-3 bg-gray-700 rounded-lg">
-            <label className="block text-sm text-gray-400 mb-2">
+          <div className="mb-4 p-3 bg-slate-50 border border-slate-200 rounded-lg">
+            <label className="block text-sm text-slate-500 mb-2">
               {t('groups.groupLabel')}
             </label>
             <div className="flex gap-2">
@@ -65,7 +65,7 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
                 value={newGroupLabel}
                 onChange={(e) => setNewGroupLabel(e.target.value)}
                 placeholder={t('groups.groupLabel')}
-                className="flex-1 px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white"
+                className="input flex-1"
                 autoFocus
               />
               <button
@@ -89,7 +89,7 @@ export function GroupAssignmentTab({ trip }: GroupAssignmentTabProps) {
 
         <div className="space-y-4">
           {groups.length === 0 ? (
-            <p className="text-gray-400 text-sm">{t('groups.noGroups')}</p>
+            <p className="text-slate-500 text-sm">{t('groups.noGroups')}</p>
           ) : (
             groups.map((group) => (
               <GroupCard
@@ -138,7 +138,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
   );
 
   return (
-    <div className="bg-gray-700 rounded-lg p-4">
+    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="flex-1">
           {editMode ? (
@@ -146,10 +146,10 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
               type="text"
               value={label}
               onChange={(e) => setLabel(e.target.value)}
-              className="w-full px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white"
+              className="input w-full"
             />
           ) : (
-            <h4 className="font-semibold text-white">{group.label}</h4>
+            <h4 className="font-semibold text-slate-900">{group.label}</h4>
           )}
         </div>
         <div className="flex gap-2">
@@ -157,7 +157,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
             <>
               <button
                 onClick={() => setEditMode(true)}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-slate-500 hover:text-slate-900 text-sm"
               >
                 {t('actions.edit')}
               </button>
@@ -175,13 +175,13 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
                   setLabel(group.label);
                   setEditMode(false);
                 }}
-                className="text-gray-400 hover:text-white text-sm"
+                className="text-slate-500 hover:text-slate-900 text-sm"
               >
                 {t('actions.cancel')}
               </button>
               <button
                 onClick={handleSave}
-                className="text-teal-400 hover:text-teal-300 text-sm"
+                className="text-teal-600 hover:text-teal-700 text-sm"
               >
                 {t('actions.save')}
               </button>
@@ -192,7 +192,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
 
       <div className="space-y-3">
         <div>
-          <h5 className="text-sm font-medium text-gray-400 mb-2">
+          <h5 className="text-sm font-medium text-slate-500 mb-2">
             {t('groups.assignedTransports')} ({assignedTransports.length})
           </h5>
           {assignedTransports.length === 0 ? (
@@ -219,7 +219,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
 
         {availableTransports.length > 0 && (
           <div>
-            <h5 className="text-sm font-medium text-gray-400 mb-2">
+            <h5 className="text-sm font-medium text-slate-500 mb-2">
               {t('groups.availableTransports')} ({availableTransports.length})
             </h5>
             <div className="space-y-2">
@@ -230,7 +230,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
                   action={
                     <button
                       onClick={() => addTransportToGroup(group.id, transport.id)}
-                      className="text-teal-400 hover:text-teal-300 text-sm"
+                      className="text-teal-600 hover:text-teal-700 text-sm"
                     >
                       {t('groups.addToGroup')}
                     </button>
@@ -255,16 +255,16 @@ function TransportItem({ transport, action }: TransportItemProps) {
   const TypeIcon = transport.unterart === 'PKW' ? Car : Bus;
 
   return (
-    <div className="flex items-center justify-between bg-gray-600 rounded p-2">
+    <div className="flex items-center justify-between bg-slate-100 rounded p-2">
       <div className="flex items-center gap-2">
-        <TypeIcon className="w-4 h-4 text-teal-400" />
+        <TypeIcon className="w-4 h-4 text-teal-600" />
         <div>
-          <p className="text-white text-sm font-medium">{transport.text}</p>
+          <p className="text-slate-900 text-sm font-medium">{transport.text}</p>
           <div className="flex gap-2">
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-slate-500">
               {transport.richtung === 'HIN' ? t('transports.outbound') : t('transports.return')}
             </span>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-slate-500">
               {transport.unterart === 'PKW' ? t('transports.car') : t('transports.bus')}
             </span>
           </div>

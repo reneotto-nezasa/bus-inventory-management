@@ -76,12 +76,12 @@ export function ExtrasForm({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-800 rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-gray-700 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-white">
+      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+          <h2 className="text-xl font-semibold text-slate-900">
             {extra ? t('form.editTitle') : t('form.createTitle')}
           </h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-white">
+          <button onClick={onClose} className="text-slate-500 hover:text-slate-900">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -89,7 +89,7 @@ export function ExtrasForm({
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.type')} *
               </label>
               <select
@@ -97,7 +97,7 @@ export function ExtrasForm({
                 onChange={(e) =>
                   setFormData({ ...formData, type: e.target.value as ExtraType })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="select w-full"
                 required
               >
                 {EXTRA_TYPES.map((type) => (
@@ -109,7 +109,7 @@ export function ExtrasForm({
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.status')} *
               </label>
               <select
@@ -117,7 +117,7 @@ export function ExtrasForm({
                 onChange={(e) =>
                   setFormData({ ...formData, status: e.target.value as ExtraStatus })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="select w-full"
                 required
               >
                 <option value="Frei">{t('statuses.Frei')}</option>
@@ -128,33 +128,33 @@ export function ExtrasForm({
           </div>
 
           <div>
-            <label className="block text-gray-400 mb-1 text-sm">
+            <label className="block text-slate-500 mb-1 text-sm">
               {t('fields.name')} *
             </label>
             <input
               type="text"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+              className="input w-full"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-400 mb-1 text-sm">
+            <label className="block text-slate-500 mb-1 text-sm">
               {t('fields.description')}
             </label>
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+              className="input w-full"
               rows={3}
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.price')} (€) *
               </label>
               <input
@@ -164,40 +164,40 @@ export function ExtrasForm({
                 onChange={(e) =>
                   setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="input w-full"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.date')}
               </label>
               <input
                 type="date"
                 value={formData.date}
                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="input w-full"
               />
             </div>
           </div>
 
           <div>
-            <label className="flex items-center gap-2 text-white cursor-pointer">
+            <label className="flex items-center gap-2 text-slate-900 cursor-pointer">
               <input
                 type="checkbox"
                 checked={formData.is_included}
                 onChange={(e) =>
                   setFormData({ ...formData, is_included: e.target.checked })
                 }
-                className="w-4 h-4 text-teal-500 bg-gray-700 border-gray-600 rounded"
+                className="w-4 h-4 text-teal-500 bg-white border-slate-300 rounded"
               />
               <span className="text-sm">{t('fields.included')}</span>
             </label>
           </div>
         </form>
 
-        <div className="p-4 border-t border-gray-700 flex items-center justify-end gap-3">
+        <div className="p-4 border-t border-slate-200 flex items-center justify-end gap-3">
           <button type="button" onClick={onClose} className="btn-ghost">
             {t('actions.cancel')}
           </button>

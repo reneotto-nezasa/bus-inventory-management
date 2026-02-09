@@ -66,19 +66,19 @@ export function EarlyBirdDiscountForm({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-800 rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-gray-700 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-white">
+      <div className="bg-white rounded-lg w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="p-4 border-b border-slate-200 flex items-center justify-between">
+          <h2 className="text-xl font-semibold text-slate-900">
             {discount ? t('form.discountEditTitle') : t('form.discountCreateTitle')}
           </h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-white">
+          <button onClick={onClose} className="text-slate-500 hover:text-slate-900">
             <X className="w-6 h-6" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
           <div>
-            <label className="block text-gray-400 mb-1 text-sm">
+            <label className="block text-slate-500 mb-1 text-sm">
               {t('fields.bookingDeadline')} *
             </label>
             <input
@@ -87,14 +87,14 @@ export function EarlyBirdDiscountForm({
               onChange={(e) =>
                 setFormData({ ...formData, booking_deadline: e.target.value })
               }
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+              className="input w-full"
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.travelDateFrom')}
               </label>
               <input
@@ -103,12 +103,12 @@ export function EarlyBirdDiscountForm({
                 onChange={(e) =>
                   setFormData({ ...formData, travel_date_from: e.target.value })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="input w-full"
               />
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.travelDateTo')}
               </label>
               <input
@@ -117,14 +117,14 @@ export function EarlyBirdDiscountForm({
                 onChange={(e) =>
                   setFormData({ ...formData, travel_date_to: e.target.value })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="input w-full"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.discountType')} *
               </label>
               <select
@@ -132,7 +132,7 @@ export function EarlyBirdDiscountForm({
                 onChange={(e) =>
                   setFormData({ ...formData, discount_type: e.target.value as DiscountType })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="select w-full"
                 required
               >
                 <option value="flat">{t('discountTypes.flat')}</option>
@@ -141,7 +141,7 @@ export function EarlyBirdDiscountForm({
             </div>
 
             <div>
-              <label className="block text-gray-400 mb-1 text-sm">
+              <label className="block text-slate-500 mb-1 text-sm">
                 {t('fields.discountValue')} *
               </label>
               <input
@@ -151,7 +151,7 @@ export function EarlyBirdDiscountForm({
                 onChange={(e) =>
                   setFormData({ ...formData, discount_value: parseFloat(e.target.value) || 0 })
                 }
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="input w-full"
                 required
                 placeholder={formData.discount_type === 'percent' ? '10' : '50.00'}
               />
@@ -159,19 +159,19 @@ export function EarlyBirdDiscountForm({
           </div>
 
           <div>
-            <label className="block text-gray-400 mb-1 text-sm">
+            <label className="block text-slate-500 mb-1 text-sm">
               {t('fields.description')}
             </label>
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+              className="input w-full"
               rows={3}
             />
           </div>
         </form>
 
-        <div className="p-4 border-t border-gray-700 flex items-center justify-end gap-3">
+        <div className="p-4 border-t border-slate-200 flex items-center justify-end gap-3">
           <button type="button" onClick={onClose} className="btn-ghost">
             {t('actions.cancel')}
           </button>

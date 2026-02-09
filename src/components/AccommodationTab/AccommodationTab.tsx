@@ -96,7 +96,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
   if (!selectedDeparture) {
     return (
       <div className="p-6">
-        <div className="text-center text-gray-400 py-8">
+        <div className="text-center text-slate-500 py-8">
           <Hotel className="w-12 h-12 mx-auto mb-3 opacity-50" />
           <p className="text-sm">No departure selected</p>
         </div>
@@ -108,23 +108,23 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-semibold text-white flex items-center gap-2">
-            <Hotel className="w-6 h-6 text-teal-400" />
+          <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
+            <Hotel className="w-6 h-6 text-teal-600" />
             {t('title')}
           </h2>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             {trip.text} - {new Date(selectedDeparture.termin).toLocaleDateString()}
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-gray-700 rounded p-1">
+          <div className="flex items-center gap-1 bg-slate-50 border border-slate-200 rounded p-1">
             <button
               onClick={() => setViewMode('structured')}
               className={`p-2 rounded transition-colors ${
                 viewMode === 'structured'
                   ? 'bg-teal-500 text-white'
-                  : 'text-gray-400 hover:text-white'
+                  : 'text-slate-500 hover:text-slate-900'
               }`}
               title={t('viewModes.structured')}
             >
@@ -135,7 +135,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
               className={`p-2 rounded transition-colors ${
                 viewMode === 'flatList'
                   ? 'bg-teal-500 text-white'
-                  : 'text-gray-400 hover:text-white'
+                  : 'text-slate-500 hover:text-slate-900'
               }`}
               title={t('viewModes.flatList')}
             >
@@ -153,8 +153,8 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
       {accommodations.length > 0 && (
         <div className="card">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-white flex items-center gap-2">
-              <Filter className="w-4 h-4 text-teal-400" />
+            <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
+              <Filter className="w-4 h-4 text-teal-600" />
               {t('filters.title')}
             </h3>
             {hasActiveFilters && (
@@ -170,13 +170,13 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-2">
+              <label className="block text-xs font-medium text-slate-600 mb-2">
                 {t('filters.deck')}
               </label>
               <select
                 value={filterDeck}
                 onChange={(e) => setFilterDeck(e.target.value)}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                className="select w-full"
               >
                 <option value="">{t('filters.all')}</option>
                 {uniqueDecks.map((deck) => (
@@ -188,13 +188,13 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-2">
+              <label className="block text-xs font-medium text-slate-600 mb-2">
                 {t('filters.status')}
               </label>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value as AccommodationStatus | '')}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                className="select w-full"
               >
                 <option value="">{t('filters.all')}</option>
                 <option value="Frei">{t('statuses.Frei')}</option>
@@ -203,13 +203,13 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-2">
+              <label className="block text-xs font-medium text-slate-600 mb-2">
                 {t('filters.roomType')}
               </label>
               <select
                 value={filterRoomType}
                 onChange={(e) => setFilterRoomType(e.target.value as RoomType | '')}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                className="select w-full"
               >
                 <option value="">{t('filters.all')}</option>
                 <option value="DZ">{t('roomTypes.dz')}</option>
@@ -222,7 +222,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
           </div>
 
           {hasActiveFilters && (
-            <div className="mt-3 text-xs text-gray-400">
+            <div className="mt-3 text-xs text-slate-500">
               {t('filters.showing')} {filteredAccommodations.length} {t('filters.of')} {accommodations.length}
             </div>
           )}
@@ -230,14 +230,14 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
       )}
 
       {loading ? (
-        <div className="text-center text-gray-400 py-8">
+        <div className="text-center text-slate-500 py-8">
           <p className="text-sm">Loading...</p>
         </div>
       ) : accommodations.length === 0 ? (
         <div className="card text-center py-12">
-          <Hotel className="w-16 h-16 mx-auto mb-4 text-gray-600" />
-          <h3 className="text-lg font-semibold text-white mb-2">{t('empty.title')}</h3>
-          <p className="text-gray-400 mb-6">{t('empty.subtitle')}</p>
+          <Hotel className="w-16 h-16 mx-auto mb-4 text-slate-300" />
+          <h3 className="text-lg font-semibold text-slate-900 mb-2">{t('empty.title')}</h3>
+          <p className="text-slate-500 mb-6">{t('empty.subtitle')}</p>
           <button onClick={handleAddAccommodation} className="btn-primary mx-auto">
             {t('actions.add')}
           </button>

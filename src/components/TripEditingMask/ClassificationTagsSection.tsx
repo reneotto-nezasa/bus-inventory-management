@@ -58,10 +58,10 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
   };
 
   return (
-    <div className="card">
-      <div className="flex items-center gap-2 mb-4">
-        <Tags className="w-5 h-5 text-teal-400" />
-        <h3 className="text-lg font-semibold text-white">
+    <div className="card p-5 sm:p-6">
+      <div className="flex items-center gap-2 mb-5">
+        <Tags className="w-5 h-5 text-teal-600" />
+        <h3 className="text-base font-semibold text-slate-900">
           {t('tripData.classificationTags')}
         </h3>
       </div>
@@ -70,12 +70,12 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
         {Object.entries(TAG_DIMENSIONS).map(([dimension, predefinedValues]) => (
           <div key={dimension}>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-gray-400">
+              <label className="text-sm font-medium text-slate-600">
                 {t(`tripData.tagDimension.${dimension}`)}
               </label>
               <button
                 onClick={() => setAddingDimension(dimension)}
-                className="text-teal-400 hover:text-teal-300 text-xs flex items-center gap-1"
+                className="text-teal-600 hover:text-teal-700 text-xs flex items-center gap-1"
               >
                 <Plus className="w-3 h-3" />
                 {t('actions.add')}
@@ -86,12 +86,12 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
               {getTagsForDimension(dimension).map(tag => (
                 <span
                   key={tag.id}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-teal-900/30 border border-teal-700 rounded-full text-teal-300 text-sm"
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-teal-50 border border-teal-200 rounded-full text-teal-700 text-sm"
                 >
                   {tag.value}
                   <button
                     onClick={() => removeTag(tag.id)}
-                    className="hover:text-teal-100"
+                    className="hover:text-teal-900"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -103,7 +103,7 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
                   {dimension === 'media_partner' || dimension === 'responsible_pm' ? (
                     <>
                       <select
-                        className="px-2 py-1 bg-gray-700 border border-gray-600 rounded text-white text-sm"
+                        className="select text-sm py-1"
                         onChange={(e) => {
                           if (e.target.value === 'custom') {
                             setCustomValue('');
@@ -123,7 +123,7 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
                         placeholder={t('tripData.enterCustomValue')}
                         value={customValue}
                         onChange={(e) => setCustomValue(e.target.value)}
-                        className="px-2 py-1 bg-gray-700 border border-gray-600 rounded text-white text-sm"
+                        className="input text-sm py-1"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' && customValue.trim()) {
                             addTag(dimension, customValue.trim());
@@ -133,7 +133,7 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
                     </>
                   ) : (
                     <select
-                      className="px-2 py-1 bg-gray-700 border border-gray-600 rounded text-white text-sm"
+                      className="select text-sm py-1"
                       onChange={(e) => {
                         if (e.target.value) {
                           addTag(dimension, e.target.value);
@@ -151,7 +151,7 @@ export function ClassificationTagsSection({ tripId, tags, onTagsUpdate }: Classi
                       setAddingDimension(null);
                       setCustomValue('');
                     }}
-                    className="text-gray-400 hover:text-white text-sm"
+                    className="text-slate-500 hover:text-slate-700 text-sm"
                   >
                     {t('actions.cancel')}
                   </button>

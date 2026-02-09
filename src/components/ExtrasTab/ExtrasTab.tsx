@@ -114,7 +114,7 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
   if (!selectedDeparture) {
     return (
       <div className="p-6">
-        <div className="text-center text-gray-400 py-8">
+        <div className="text-center text-slate-500 py-8">
           <Gift className="w-12 h-12 mx-auto mb-3 opacity-50" />
           <p className="text-sm">No departure selected</p>
         </div>
@@ -141,11 +141,11 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-semibold text-white flex items-center gap-2">
-            <Gift className="w-6 h-6 text-teal-400" />
+          <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
+            <Gift className="w-6 h-6 text-teal-600" />
             {t('title')}
           </h2>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-slate-500 mt-1">
             {trip.text} - {new Date(selectedDeparture.termin).toLocaleDateString()}
           </p>
         </div>
@@ -170,7 +170,7 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
         </div>
       </div>
 
-      <div className="border-b border-gray-700">
+      <div className="border-b border-slate-200">
         <div className="flex space-x-1">
           {sections.map((section) => (
             <button
@@ -180,8 +180,8 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
                 px-6 py-3 font-medium text-sm border-b-2 transition-colors
                 ${
                   activeSection === section.key
-                    ? 'border-teal-500 text-teal-400'
-                    : 'border-transparent text-gray-400 hover:text-gray-300'
+                    ? 'border-teal-600 text-teal-700'
+                    : 'border-transparent text-slate-500 hover:text-slate-700'
                 }
               `}
             >
@@ -192,7 +192,7 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
       </div>
 
       {loading ? (
-        <div className="text-center text-gray-400 py-8">
+        <div className="text-center text-slate-500 py-8">
           <p className="text-sm">Loading...</p>
         </div>
       ) : (
@@ -222,16 +222,16 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
       )}
 
       {activeSection !== 'earlyBird' && totalExtras > 0 && (
-        <div className="card bg-gray-700 p-4">
+        <div className="card bg-slate-50 border border-slate-200 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-400">{t('summary.total')} {t('summary.extras')}</p>
-              <p className="text-2xl font-bold text-white">{totalExtras}</p>
+              <p className="text-sm text-slate-500">{t('summary.total')} {t('summary.extras')}</p>
+              <p className="text-2xl font-bold text-slate-900">{totalExtras}</p>
             </div>
             {priceRange && (
               <div className="text-right">
-                <p className="text-sm text-gray-400">{t('summary.priceRange')}</p>
-                <p className="text-lg font-semibold text-teal-400">
+                <p className="text-sm text-slate-500">{t('summary.priceRange')}</p>
+                <p className="text-lg font-semibold text-teal-600">
                   €{priceRange.min.toFixed(2)} - €{priceRange.max.toFixed(2)}
                 </p>
               </div>
@@ -241,11 +241,11 @@ export function ExtrasTab({ trip }: ExtrasTabProps) {
       )}
 
       {activeSection === 'earlyBird' && discounts.length > 0 && (
-        <div className="card bg-gray-700 p-4">
+        <div className="card bg-slate-50 border border-slate-200 p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-400">{t('summary.total')} {t('summary.discounts')}</p>
-              <p className="text-2xl font-bold text-white">{discounts.length}</p>
+              <p className="text-sm text-slate-500">{t('summary.total')} {t('summary.discounts')}</p>
+              <p className="text-2xl font-bold text-slate-900">{discounts.length}</p>
             </div>
           </div>
         </div>

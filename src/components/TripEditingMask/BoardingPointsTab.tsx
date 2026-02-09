@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapPin, Bus, Car, Calendar, Clock, DollarSign, Settings, AlertCircle } from 'lucide-react';
-import type { Trip, BusTransport, BoardingPoint } from '../../types';
+import { MapPin, Bus, Car, Calendar, DollarSign, Settings, AlertCircle } from 'lucide-react';
+import type { Trip, BoardingPoint } from '../../types';
 import { useBoardingPoints, useTrips } from '../../hooks';
 import { SurchargeManagementPanel } from './SurchargeManagementPanel';
 
@@ -182,11 +182,11 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
     return (
       <div className="p-6 flex items-center justify-center h-full">
         <div className="text-center">
-          <MapPin className="w-16 h-16 mx-auto text-gray-600 mb-4" />
-          <h3 className="text-lg font-semibold text-white mb-2">
+          <MapPin className="w-16 h-16 mx-auto text-slate-400 mb-4" />
+          <h3 className="text-lg font-semibold text-slate-900 mb-2">
             {t('trips:boardingPoints.messages.noTransportSelected')}
           </h3>
-          <p className="text-gray-400">
+          <p className="text-slate-500">
             {t('trips:boardingPoints.messages.noTransportSelectedHint')}
           </p>
         </div>
@@ -200,10 +200,10 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
         <div className="card mb-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
-              <TypeIcon className="w-6 h-6 text-teal-400" />
+              <TypeIcon className="w-6 h-6 text-teal-600" />
               <div>
-                <h3 className="text-lg font-semibold text-white">{selectedTransport.text}</h3>
-                <div className="flex items-center gap-3 text-sm text-gray-400 mt-1">
+                <h3 className="text-lg font-semibold text-slate-900">{selectedTransport.text}</h3>
+                <div className="flex items-center gap-3 text-sm text-slate-500 mt-1">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {new Date(selectedTransport.termin).toLocaleDateString()}
@@ -225,13 +225,13 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">
+              <label className="block text-sm font-medium text-slate-500 mb-2">
                 {t('trips:boardingPoints.transferCategory')}
               </label>
               <select
                 value={selectedTransport.transfer_cost_category_id || ''}
                 onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="select w-full"
               >
                 <option value="">{t('trips:boardingPoints.noCategory')}</option>
                 {transferCostCategories.map((cat) => (
@@ -245,13 +245,13 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
         </div>
 
         <div className="card mb-4">
-          <div className="flex items-center gap-2 mb-4 border-b border-gray-700">
+          <div className="flex items-center gap-2 mb-4 border-b border-slate-200">
             <button
               onClick={() => setDirectionTab('outbound')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 directionTab === 'outbound'
-                  ? 'text-teal-400 border-b-2 border-teal-400'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'text-teal-700 border-b-2 border-teal-600'
+                  : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               {t('boarding:outboundPoints')}
@@ -260,8 +260,8 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
               onClick={() => setDirectionTab('return')}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 directionTab === 'return'
-                  ? 'text-teal-400 border-b-2 border-teal-400'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'text-teal-700 border-b-2 border-teal-600'
+                  : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               {t('boarding:returnPoints')}
@@ -277,7 +277,7 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                   className={`px-3 py-1 rounded text-sm transition-colors ${
                     filter === filterType
                       ? 'bg-teal-500 text-white'
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      : 'bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100'
                   }`}
                 >
                   {t(`trips:boardingPoints.filters.${filterType === 'assigned' ? 'assignedOnly' : filterType === 'released' ? 'releasedOnly' : 'all'}`)}
@@ -290,7 +290,7 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                 <>
                   <button
                     onClick={handleDeselectAll}
-                    className="text-sm text-gray-400 hover:text-white"
+                    className="text-sm text-slate-500 hover:text-slate-900"
                   >
                     {t('trips:boardingPoints.bulkActions.deselectAll')}
                   </button>
@@ -311,7 +311,7 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
               {selectedBoardingPoints.size === 0 && (
                 <button
                   onClick={handleSelectAll}
-                  className="text-sm text-gray-400 hover:text-white"
+                  className="text-sm text-slate-500 hover:text-slate-900"
                 >
                   {t('trips:boardingPoints.bulkActions.selectAll')}
                 </button>
@@ -322,25 +322,25 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-700">
-                  <th className="text-left py-2 px-2 text-sm font-medium text-gray-400 w-12"></th>
-                  <th className="text-left py-2 px-2 text-sm font-medium text-gray-400 w-16">
+                <tr className="border-b border-slate-200">
+                  <th className="text-left py-2 px-2 text-sm font-medium text-slate-500 w-12"></th>
+                  <th className="text-left py-2 px-2 text-sm font-medium text-slate-500 w-16">
                     {t('trips:boardingPoints.table.assigned')}
                   </th>
-                  <th className="text-left py-2 px-2 text-sm font-medium text-gray-400">
+                  <th className="text-left py-2 px-2 text-sm font-medium text-slate-500">
                     {t('trips:boardingPoints.table.code')}
                   </th>
-                  <th className="text-left py-2 px-2 text-sm font-medium text-gray-400">
+                  <th className="text-left py-2 px-2 text-sm font-medium text-slate-500">
                     {t('trips:boardingPoints.table.location')}
                   </th>
-                  <th className="text-left py-2 px-2 text-sm font-medium text-gray-400">
+                  <th className="text-left py-2 px-2 text-sm font-medium text-slate-500">
                     {t('boarding:pickupTime')}
                   </th>
-                  <th className="text-left py-2 px-2 text-sm font-medium text-gray-400">
+                  <th className="text-left py-2 px-2 text-sm font-medium text-slate-500">
                     {t('boarding:pickupNote')}
                   </th>
                   {showSurcharges && (
-                    <th className="text-left py-2 px-2 text-sm font-medium text-gray-400">
+                    <th className="text-left py-2 px-2 text-sm font-medium text-slate-500">
                       {t('boarding:surcharge')}
                     </th>
                   )}
@@ -358,14 +358,14 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                   return (
                     <tr
                       key={boardingPoint.id}
-                      className="border-b border-gray-700 hover:bg-gray-700 transition-colors"
+                      className="border-b border-slate-200 hover:bg-slate-50 transition-colors"
                     >
                       <td className="py-2 px-2">
                         <input
                           type="checkbox"
                           checked={selectedBoardingPoints.has(boardingPoint.id)}
                           onChange={() => handleToggleSelection(boardingPoint.id)}
-                          className="w-4 h-4 rounded border-gray-600 text-teal-500 focus:ring-teal-500"
+                          className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
                         />
                       </td>
                       <td className="py-2 px-2">
@@ -373,11 +373,11 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                           type="checkbox"
                           checked={isAssigned}
                           onChange={() => handleToggleAssignment(boardingPoint.id)}
-                          className="w-4 h-4 rounded border-gray-600 text-teal-500 focus:ring-teal-500"
+                          className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
                         />
                       </td>
-                      <td className="py-2 px-2 text-white text-sm">{boardingPoint.code}</td>
-                      <td className="py-2 px-2 text-white text-sm">
+                      <td className="py-2 px-2 text-slate-900 text-sm">{boardingPoint.code}</td>
+                      <td className="py-2 px-2 text-slate-900 text-sm">
                         <div className="flex items-center gap-2">
                           <span>{formatBoardingPointLocation(boardingPoint)}</span>
                           {needsEnrichment && (
@@ -394,11 +394,11 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                             type="time"
                             value={assignment.pickup_time || ''}
                             onChange={(e) => handleUpdatePickupTime(assignment.id, e.target.value)}
-                            className="px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm w-28"
+                            className="input px-2 py-1 text-sm w-28"
                             placeholder={t('boarding:noTimeSet')}
                           />
                         ) : (
-                          <span className="text-gray-500 text-sm">{t('boarding:noTimeSet')}</span>
+                          <span className="text-slate-400 text-sm">{t('boarding:noTimeSet')}</span>
                         )}
                       </td>
                       <td className="py-2 px-2">
@@ -407,21 +407,21 @@ export function BoardingPointsTab({ trip, selectedTransportId }: BoardingPointsT
                             type="text"
                             value={assignment.pickup_note || ''}
                             onChange={(e) => handleUpdatePickupNote(assignment.id, e.target.value)}
-                            className="px-2 py-1 bg-gray-600 border border-gray-500 rounded text-white text-sm w-40"
+                            className="input px-2 py-1 text-sm w-40"
                             placeholder={t('boarding:pickupNote')}
                           />
                         ) : (
-                          <span className="text-gray-500 text-sm">-</span>
+                          <span className="text-slate-400 text-sm">-</span>
                         )}
                       </td>
                       {showSurcharges && (
                         <td className="py-2 px-2">
                           {surcharge !== null ? (
-                            <span className="text-teal-400 text-sm font-medium flex items-center gap-1">
+                            <span className="text-teal-600 text-sm font-medium flex items-center gap-1">
                               +<DollarSign className="w-3 h-3" />{surcharge.toFixed(2)}
                             </span>
                           ) : (
-                            <span className="text-gray-500 text-sm">-</span>
+                            <span className="text-slate-400 text-sm">-</span>
                           )}
                         </td>
                       )}
