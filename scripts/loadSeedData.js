@@ -48,16 +48,19 @@ async function loadSeedData() {
 
   console.log('Loading boarding points...');
   const boardingPoints = [30, 50, 173, 296, 438, 477, 568, 600, 620, 647, 648, 649, 691, 707, 722, 723, 731, 800];
-  await supabase.from('boarding_points').insert(
+  const { error: bpError } = await supabase.from('boarding_points').insert(
     boardingPoints.map(bp => ({
       id: `00000000-0000-0001-${String(bp).padStart(4, '0')}-000000000000`,
       idbuspro: String(bp),
+      code: `BP${bp}`,
       ort: `BP-${bp}`,
-      stelle: '',
+      stelle: `Boarding Point ${bp}`,
+      plz: '00000',
       status: 'freigegeben',
       needs_enrichment: true
     }))
   );
+  if (bpError) console.error('Error loading boarding points:', bpError);
 
   console.log('Loading transfer cost categories...');
   await supabase.from('transfer_cost_categories').insert([
@@ -195,6 +198,177 @@ async function loadSeedData() {
   ]);
   if (bt1Error) console.error('Error loading Trip 1 transports:', bt1Error);
 
+  await supabase.from('accommodations').insert([
+    { id: '00000000-0000-0000-0107-000000000001', trip_departure_id: '00000000-0000-0000-0101-000000000001', name: 'DZ PS (Doppelzimmer Modern Parkseite)', code: 'DZ_PS', price: 943.00, status: 'Frei', room_type: 'double', meal_plan: 'Laut Programm', nights: 3, belegung_min: 2, belegung_max: 2, checkin_date: '2026-04-13', checkout_date: '2026-04-16' },
+    { id: '00000000-0000-0000-0107-000000000002', trip_departure_id: '00000000-0000-0000-0101-000000000001', name: 'EZ/DZ/PS (Einzelnutzung)', code: 'EZ_PS', price: 1306.00, status: 'Frei', room_type: 'single', meal_plan: 'Laut Programm', nights: 3, belegung_min: 1, belegung_max: 1, checkin_date: '2026-04-13', checkout_date: '2026-04-16' },
+  ]);
+
+  const { error: bpa1Error } = await supabase.from('boarding_point_assignments').insert([
+    { boarding_point_id: '00000000-0000-0001-0648-000000000000', bus_transport_id: '00000000-0000-0000-0104-000000000001' },
+    { boarding_point_id: '00000000-0000-0001-0649-000000000000', bus_transport_id: '00000000-0000-0000-0104-000000000001' },
+    { boarding_point_id: '00000000-0000-0001-0647-000000000000', bus_transport_id: '00000000-0000-0000-0104-000000000001' },
+    { boarding_point_id: '00000000-0000-0001-0722-000000000000', bus_transport_id: '00000000-0000-0000-0104-000000000001', surcharge_amount: 50.00 },
+    { boarding_point_id: '00000000-0000-0001-0723-000000000000', bus_transport_id: '00000000-0000-0000-0104-000000000001', surcharge_amount: 40.00 },
+  ]);
+  if (bpa1Error) console.error('Error loading Trip 1 boarding points:', bpa1Error);
+
+  console.log('Loading Trip 2: Flusskreuzfahrt Rhône...');
+  await supabase.from('hotel_partners').insert([
+    { id: '00000000-0000-0000-0002-000000060773', idbuspro: '60773', name: 'Hotel Nancy/Metz Pre-Post', city: 'Nancy', needs_enrichment: true },
+    { id: '00000000-0000-0000-0002-000000086260', idbuspro: '86260', name: 'Hotel Freiburg Program', city: 'Freiburg', needs_enrichment: true },
+    { id: '00000000-0000-0000-0002-000000086261', idbuspro: '86261', name: 'Hotel Metz Post-Program', city: 'Metz', needs_enrichment: true },
+  ]);
+
+  await supabase.from('trips').insert({
+    id: '00000000-0000-0000-0200-000000000001',
+    code: '3456678',
+    text: 'Flusskreuzfahrt auf der Rhône / MS VOYAGE',
+    termin: '2026-04-09',
+    bis: '2026-04-16',
+    abpreis: 1599.00,
+    status_hin: 'W',
+    status_rueck: 'W'
+  });
+
+  await supabase.from('trip_departures').insert({
+    id: '00000000-0000-0000-0201-000000000001',
+    trip_id: '00000000-0000-0000-0200-000000000001',
+    start_date: '2026-04-09',
+    end_date: '2026-04-16',
+    code: '3456678',
+    status_hin: 'W',
+    status_rueck: 'W'
+  });
+
+  await supabase.from('transport_groups').insert([
+    { id: '00000000-0000-0000-0203-000000000001', trip_departure_id: '00000000-0000-0000-0201-000000000001', label: 'Busfahrt ab/bis Raum Aalen, Amberg, Ingolstadt, Regensburg, Weiden (Übernachtung in Freiburg)', sort_order: 0 },
+    { id: '00000000-0000-0000-0203-000000000002', trip_departure_id: '00000000-0000-0000-0201-000000000001', label: 'Busfahrt ab/bis Raum Aachen, Bonn, Bremen, Oldenburg, Osnabrück (Übernachtung in Nancy & Metz)', sort_order: 1 },
+    { id: '00000000-0000-0000-0203-000000000003', trip_departure_id: '00000000-0000-0000-0201-000000000001', label: 'Busfahrt ab/bis Raum Aalen, Amberg, Ingolstadt, Regensburg, Weiden #Freiburg, Herbolzheim, Karlsruhe', sort_order: 2 },
+    { id: '00000000-0000-0000-0203-000000000004', trip_departure_id: '00000000-0000-0000-0201-000000000001', label: 'Eigene An- und Abreise zum Schiff', sort_order: 3 },
+  ]);
+
+  const { error: bt2Error } = await supabase.from('bus_transports').insert([
+    {
+      id: '00000000-0000-0000-0204-000000000001',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Bus 1 Hinfahrt 08.04',
+      richtung: 'HIN',
+      termin: '2026-04-08',
+      bis: '2026-04-08',
+      preis: 0,
+      status: 'Frei',
+      sitzplan: false,
+      unterart: 'BUS'
+    },
+    {
+      id: '00000000-0000-0000-0204-000000000002',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Bus 2 Hinfahrt 08.04',
+      richtung: 'HIN',
+      termin: '2026-04-08',
+      bis: '2026-04-08',
+      preis: 0,
+      status: 'Frei',
+      sitzplan: false,
+      unterart: 'BUS'
+    },
+    {
+      id: '00000000-0000-0000-0204-000000000003',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Bus 1 Weiterfahrt 09.04',
+      richtung: 'HIN',
+      termin: '2026-04-09',
+      bis: '2026-04-09',
+      preis: 0,
+      status: 'Anfrage',
+      sitzplan: false,
+      unterart: 'BUS'
+    },
+    {
+      id: '00000000-0000-0000-0204-000000000004',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Bus 1 Rückfahrt 16.04',
+      richtung: 'RUECK',
+      termin: '2026-04-16',
+      bis: '2026-04-16',
+      preis: 0,
+      status: 'Anfrage',
+      sitzplan: false,
+      unterart: 'BUS'
+    },
+    {
+      id: '00000000-0000-0000-0204-000000000005',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Bus 2 Rückfahrt 17.04',
+      richtung: 'RUECK',
+      termin: '2026-04-17',
+      bis: '2026-04-17',
+      preis: 0,
+      status: 'Frei',
+      sitzplan: false,
+      unterart: 'BUS'
+    },
+    {
+      id: '00000000-0000-0000-0204-000000000006',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Eigene Anreise',
+      richtung: 'HIN',
+      termin: '2026-04-09',
+      bis: '2026-04-09',
+      preis: -40,
+      status: 'Anfrage',
+      sitzplan: false,
+      unterart: 'PKW'
+    },
+    {
+      id: '00000000-0000-0000-0204-000000000007',
+      trip_id: '00000000-0000-0000-0200-000000000001',
+      trip_departure_id: '00000000-0000-0000-0201-000000000001',
+      text: 'Eigene Abreise',
+      richtung: 'RUECK',
+      termin: '2026-04-16',
+      bis: '2026-04-16',
+      preis: -40,
+      status: 'Anfrage',
+      sitzplan: false,
+      unterart: 'PKW'
+    }
+  ]);
+  if (bt2Error) console.error('Error loading Trip 2 transports:', bt2Error);
+
+  const { error: accError } = await supabase.from('accommodations').insert([
+    { id: '00000000-0000-0000-0207-000000000001', trip_departure_id: '00000000-0000-0000-0201-000000000001', name: 'Smaragddeck Zweibettkabine achtern', code: 'SDDZA', price: 1599.00, status: 'Anfrage', room_type: 'cabin', meal_plan: 'Vollpension', nights: 7, belegung_min: 2, belegung_max: 2, deck_name: 'Smaragddeck', checkin_date: '2026-04-09', checkout_date: '2026-04-16' },
+    { id: '00000000-0000-0000-0207-000000000002', trip_departure_id: '00000000-0000-0000-0201-000000000001', name: 'Smaragddeck Zweibettkabine', code: 'SDDZ', price: 1699.00, status: 'Anfrage', room_type: 'cabin', meal_plan: 'Vollpension', nights: 7, belegung_min: 2, belegung_max: 2, deck_name: 'Smaragddeck', checkin_date: '2026-04-09', checkout_date: '2026-04-16' },
+    { id: '00000000-0000-0000-0207-000000000003', trip_departure_id: '00000000-0000-0000-0201-000000000001', name: 'Smaragddeck Junior-Suite', code: 'SDJS', price: 1899.00, status: 'Frei', room_type: 'suite', meal_plan: 'Vollpension', nights: 7, belegung_min: 2, belegung_max: 2, deck_name: 'Smaragddeck', checkin_date: '2026-04-09', checkout_date: '2026-04-16' },
+    { id: '00000000-0000-0000-0207-000000000004', trip_departure_id: '00000000-0000-0000-0201-000000000001', name: 'Rubindeck Zweibettkabine', code: 'RDDZ', price: 1999.00, status: 'Anfrage', room_type: 'cabin', meal_plan: 'Vollpension', nights: 7, belegung_min: 2, belegung_max: 2, deck_name: 'Rubindeck', checkin_date: '2026-04-09', checkout_date: '2026-04-16' },
+    { id: '00000000-0000-0000-0207-000000000005', trip_departure_id: '00000000-0000-0000-0201-000000000001', name: 'Diamantdeck Zweibettkabine', code: 'DDDZ', price: 2099.00, status: 'Frei', room_type: 'cabin', meal_plan: 'Vollpension', nights: 7, belegung_min: 2, belegung_max: 2, deck_name: 'Diamantdeck', checkin_date: '2026-04-09', checkout_date: '2026-04-16' },
+  ]);
+  if (accError) console.error('Error loading accommodations:', accError);
+
+  const { error: extrasError } = await supabase.from('trip_extras').insert([
+    { trip_departure_id: '00000000-0000-0000-0201-000000000001', type: 'excursion', name: 'Aix-en-Provence Ausflug', price: 69.00, date: '2026-04-13', status: 'Frei' },
+    { trip_departure_id: '00000000-0000-0000-0201-000000000001', type: 'excursion', name: 'Marseille Ausflug', price: 69.00, date: '2026-04-13', status: 'Frei' },
+    { trip_departure_id: '00000000-0000-0000-0201-000000000001', type: 'dining', name: 'Brasserie Excelsior Nancy Dinner', price: 52.00, date: '2026-04-08', status: 'Frei' },
+  ]);
+  if (extrasError) console.error('Error loading extras:', extrasError);
+
+  const { error: discountError } = await supabase.from('early_bird_discounts').insert({
+    trip_departure_id: '00000000-0000-0000-0201-000000000001',
+    travel_date_from: '2026-04-08',
+    travel_date_to: '2026-04-17',
+    booking_deadline: '2026-02-15',
+    discount_value: 100.00,
+    discount_type: 'flat',
+    description: 'Frühbucher 100€'
+  });
+  if (discountError) console.error('Error loading early bird:', discountError);
+
   console.log('Loading Trip 3: Dresden...');
   await supabase.from('trips').insert({
     id: '00000000-0000-0000-0300-000000000001',
@@ -248,6 +422,22 @@ async function loadSeedData() {
     }
   ]);
   if (bt3Error) console.error('Error loading Trip 3 transports:', bt3Error);
+
+  await supabase.from('accommodations').insert([
+    { id: '00000000-0000-0000-0307-000000000001', trip_departure_id: '00000000-0000-0000-0301-000000000001', name: 'DZ (Doppelzimmer)', code: 'DZ', price: 640.00, status: 'Frei', room_type: 'double', meal_plan: 'Laut Programm', nights: 2, belegung_min: 2, belegung_max: 2, checkin_date: '2026-03-06', checkout_date: '2026-03-08' },
+    { id: '00000000-0000-0000-0307-000000000002', trip_departure_id: '00000000-0000-0000-0301-000000000001', name: 'EZ (Einzelzimmer)', code: 'EZ', price: 740.00, status: 'Frei', room_type: 'single', meal_plan: 'Laut Programm', nights: 2, belegung_min: 1, belegung_max: 1, checkin_date: '2026-03-06', checkout_date: '2026-03-08' },
+  ]);
+
+  const { error: bpa3Error } = await supabase.from('boarding_point_assignments').insert([
+    { boarding_point_id: '00000000-0000-0001-0173-000000000000', bus_transport_id: '00000000-0000-0000-0304-000000000001', pickup_time: '10:00' },
+    { boarding_point_id: '00000000-0000-0001-0173-000000000000', bus_transport_id: '00000000-0000-0000-0304-000000000002' },
+  ]);
+  if (bpa3Error) console.error('Error loading Trip 3 boarding points:', bpa3Error);
+
+  await supabase.from('tour_guide_assignments').insert([
+    { trip_departure_id: '00000000-0000-0000-0101-000000000001', name: 'Sabine Breisacher', first_name: 'Sabine', gender: 'F', code: 'BrS' },
+    { trip_departure_id: '00000000-0000-0000-0301-000000000001', name: 'Nicole Bröhan', first_name: 'Nicole', gender: 'F', code: 'NB' },
+  ]);
 
   console.log('Loading sample seat assignments for Dresden...');
   const { error: assignError } = await supabase.from('seat_assignments').insert([
