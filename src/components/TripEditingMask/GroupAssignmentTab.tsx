@@ -190,7 +190,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-5">
         <div>
           <h5 className="text-sm font-medium text-slate-500 mb-2">
             {t('groups.assignedTransports')} ({assignedTransports.length})
