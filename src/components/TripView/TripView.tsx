@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Search, Bus, Calendar, ChevronRight } from 'lucide-react';
+import { Search, Bus, Calendar, ChevronRight, Plus } from 'lucide-react';
 import { TripEditingMask } from '../TripEditingMask';
+import { TripForm } from './TripForm';
 import { useTrips } from '../../hooks';
 import type { Trip } from '../../types';
 
@@ -11,9 +12,11 @@ interface TripViewProps {
 
 export function TripView({ trips }: TripViewProps) {
   const { t, i18n } = useTranslation(['trips', 'common']);
-  const { updateTrip } = useTrips();
+  const { updateTrip, createTrip, refetch } = useTrips();
   const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showTripForm, setShowTripForm] = useState(false);
+  const [editingTrip, setEditingTrip] = useState<Trip | null>(null);
 
   const filteredTrips = useMemo(() => {
     if (!searchQuery) return trips;
@@ -38,6 +41,22 @@ export function TripView({ trips }: TripViewProps) {
     });
   };
 
+  const handleCreateTrip = () => {
+    setEditingTrip(null);
+    setShowTripForm(true);
+  };
+
+  const handleFormSubmit = async (data: Partial<Trip>) => {
+    if (editingTrip) {
+      await updateTrip(editingTrip.id, data);
+    } else {
+      await createTrip(data);
+    }
+    await refetch();
+    setShowTripForm(false);
+    setEditingTrip(null);
+  };
+
   return (
     <div className="flex flex-col h-full bg-slate-50">
       <header className="bg-white border-b border-slate-200 px-6 py-4">
@@ -46,6 +65,13 @@ export function TripView({ trips }: TripViewProps) {
             <h1 className="text-2xl font-bold text-slate-900">{t('title')}</h1>
             <p className="text-sm text-slate-500 mt-0.5">{t('subtitle')}</p>
           </div>
+          <button
+            onClick={handleCreateTrip}
+            className="flex items-center gap-2 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+          >
+            <Plus className="w-4 h-4" />
+            {t('actions.create')}
+          </button>
         </div>
 
         <div className="relative max-w-md">
@@ -123,6 +149,17 @@ export function TripView({ trips }: TripViewProps) {
           </div>
         )}
       </div>
+
+      {showTripForm && (
+        <TripForm
+          trip={editingTrip}
+          onClose={() => {
+            setShowTripForm(false);
+            setEditingTrip(null);
+          }}
+          onSubmit={handleFormSubmit}
+        />
+      )}
     </div>
   );
 }

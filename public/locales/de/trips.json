@@ -166,11 +166,13 @@
   },
   "actions": {
     "save": "Speichern",
+    "saving": "Speichert...",
     "cancel": "Abbrechen",
     "delete": "Loeschen",
     "edit": "Bearbeiten",
     "add": "Hinzufuegen",
-    "select": "Auswaehlen"
+    "select": "Auswaehlen",
+    "create": "Reise erstellen"
   },
   "gender": {
     "male": "Maennlich",

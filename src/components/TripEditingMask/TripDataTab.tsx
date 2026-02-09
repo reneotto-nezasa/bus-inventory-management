@@ -97,9 +97,9 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+        <div className="grid grid-cols-2 gap-6">
+          <div className="col-span-2">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.tripName')}
             </label>
             {editMode ? (
@@ -107,15 +107,15 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
                 type="text"
                 value={formData.text}
                 onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               />
             ) : (
-              <p className="text-white">{trip.text}</p>
+              <p className="text-white text-lg font-medium">{trip.text}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.tripCode')}
             </label>
             {editMode ? (
@@ -123,15 +123,38 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
                 type="text"
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               />
             ) : (
-              <p className="text-white">{trip.code}</p>
+              <p className="text-white font-mono bg-gray-700 px-3 py-2 rounded inline-block">{trip.code}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              {t('tripData.basePrice')}
+            </label>
+            {editMode ? (
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">€</span>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={formData.abpreis}
+                  onChange={(e) => setFormData({ ...formData, abpreis: Number(e.target.value) })}
+                  className="w-full pl-8 pr-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
+                />
+              </div>
+            ) : (
+              <p className="text-white flex items-center gap-1 text-lg font-semibold">
+                <DollarSign className="w-5 h-5 text-teal-400" />
+                {trip.abpreis.toFixed(2)}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.startDate')}
             </label>
             {editMode ? (
@@ -139,7 +162,7 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
                 type="date"
                 value={formData.termin}
                 onChange={(e) => setFormData({ ...formData, termin: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               />
             ) : (
               <p className="text-white">{new Date(trip.termin).toLocaleDateString()}</p>
@@ -147,7 +170,7 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.endDate')}
             </label>
             {editMode ? (
@@ -155,7 +178,7 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
                 type="date"
                 value={formData.bis}
                 onChange={(e) => setFormData({ ...formData, bis: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               />
             ) : (
               <p className="text-white">{new Date(trip.bis).toLocaleDateString()}</p>
@@ -163,33 +186,14 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
-              {t('tripData.basePrice')}
-            </label>
-            {editMode ? (
-              <input
-                type="number"
-                value={formData.abpreis}
-                onChange={(e) => setFormData({ ...formData, abpreis: Number(e.target.value) })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
-              />
-            ) : (
-              <p className="text-white flex items-center gap-1">
-                <DollarSign className="w-4 h-4" />
-                {trip.abpreis.toFixed(2)}
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.statusOutbound')}
             </label>
             {editMode ? (
               <select
                 value={formData.status_hin}
                 onChange={(e) => setFormData({ ...formData, status_hin: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               >
                 <option value="Frei">{t('status.frei')}</option>
                 <option value="Offen">{t('status.offen')}</option>
@@ -197,19 +201,21 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
                 <option value="Bestätigt">{t('status.bestaetigt')}</option>
               </select>
             ) : (
-              <span className="badge-info">{trip.status_hin}</span>
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-500/20 text-teal-400 border border-teal-500/30">
+                {trip.status_hin}
+              </span>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-400 mb-1">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               {t('tripData.statusReturn')}
             </label>
             {editMode ? (
               <select
                 value={formData.status_rueck}
                 onChange={(e) => setFormData({ ...formData, status_rueck: e.target.value })}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white"
+                className="w-full px-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               >
                 <option value="Frei">{t('status.frei')}</option>
                 <option value="Offen">{t('status.offen')}</option>
@@ -217,7 +223,9 @@ export function TripDataTab({ trip, onUpdate }: TripDataTabProps) {
                 <option value="Bestätigt">{t('status.bestaetigt')}</option>
               </select>
             ) : (
-              <span className="badge-info">{trip.status_rueck}</span>
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-500/20 text-teal-400 border border-teal-500/30">
+                {trip.status_rueck}
+              </span>
             )}
           </div>
         </div>
