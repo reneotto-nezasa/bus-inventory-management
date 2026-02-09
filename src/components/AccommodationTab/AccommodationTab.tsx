@@ -143,7 +143,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             </button>
           </div>
 
-          <button onClick={handleAddAccommodation} className="btn-primary flex items-center gap-2">
+          <button onClick={handleAddAccommodation} className="btn btn-primary flex items-center gap-2">
             <Plus className="w-4 h-4" />
             {t('actions.add')}
           </button>
@@ -160,7 +160,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className="btn-ghost text-xs flex items-center gap-1"
+                className="btn btn-ghost text-xs flex items-center gap-1"
               >
                 <X className="w-3 h-3" />
                 {t('filters.clearAll')}
@@ -168,7 +168,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             )}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-2">
                 {t('filters.deck')}
@@ -238,7 +238,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
           <Hotel className="w-16 h-16 mx-auto mb-4 text-slate-300" />
           <h3 className="text-lg font-semibold text-slate-900 mb-2">{t('empty.title')}</h3>
           <p className="text-slate-500 mb-6">{t('empty.subtitle')}</p>
-          <button onClick={handleAddAccommodation} className="btn-primary mx-auto">
+          <button onClick={handleAddAccommodation} className="btn btn-primary mx-auto">
             {t('actions.add')}
           </button>
         </div>
