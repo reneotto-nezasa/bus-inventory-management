@@ -151,8 +151,8 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
       </div>
 
       {accommodations.length > 0 && (
-        <div className="card">
-          <div className="flex items-center justify-between mb-4">
+        <div className="card p-6">
+          <div className="flex items-center justify-between mb-5">
             <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
               <Filter className="w-4 h-4 text-teal-600" />
               {t('filters.title')}
@@ -168,7 +168,7 @@ export function AccommodationTab({ trip }: AccommodationTabProps) {
             )}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div>
               <label className="block text-xs font-medium text-slate-600 mb-2">
                 {t('filters.deck')}

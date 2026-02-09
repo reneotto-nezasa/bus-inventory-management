@@ -138,8 +138,8 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
   );
 
   return (
-    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <div className="flex items-center justify-between mb-3">
+    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6">
+      <div className="flex items-center justify-between mb-5">
         <div className="flex-1">
           {editMode ? (
             <input
@@ -190,7 +190,7 @@ function GroupCard({ group, transports, onDelete, onUpdate }: GroupCardProps) {
         </div>
       </div>
 
-      <div className="space-y-5">
+      <div className="space-y-6">
         <div>
           <h5 className="text-sm font-medium text-slate-500 mb-2">
             {t('groups.assignedTransports')} ({assignedTransports.length})
